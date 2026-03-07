@@ -52,4 +52,4 @@ See `configs/example.json` and `data/sample.csv`. Run:
 python run.py configs/example.json
 ```
 
-Output: `output/cleaned.csv` and `output/cleaning_report.json`.
+Output files are named from the input (e.g. `sample_cleaned.csv`, `sample_report.json`) in the configured output directory. `configs/example_all_modules.json` demonstrates the full set of modules (text, core, dedupe).
