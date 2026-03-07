@@ -10,7 +10,7 @@
     "validation.standardize_state",
     "dedupe.drop_duplicates"
   ],
-  "processing_time_seconds": 0.0207,
+  "processing_time_seconds": 0.0588,
   "module_stats": {
     "text.trim_whitespace": {
       "columns_trimmed": 4,
@@ -34,6 +34,6 @@
       "duplicates_removed": 0
     }
   },
-  "output_path": "C:\\Users\\craig\\dev\\crkdev\\personal-projects\\csv-cleaner\\data\\sample_contacts_cleaned.csv",
-  "report_path": "C:\\Users\\craig\\dev\\crkdev\\personal-projects\\csv-cleaner\\data\\sample_contacts_report.json"
+  "output_path": "C:\\Users\\craig\\dev\\crkdev\\personal-projects\\csv-cleaner\\runs\\89de63dc-4fc1-4702-94af-dec7c8a39c98\\output\\sample_contacts_cleaned.csv",
+  "report_path": "C:\\Users\\craig\\dev\\crkdev\\personal-projects\\csv-cleaner\\runs\\89de63dc-4fc1-4702-94af-dec7c8a39c98\\output\\sample_contacts_report.json"
 }
