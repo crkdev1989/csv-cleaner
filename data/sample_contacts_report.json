@@ -1,0 +1,39 @@
+{
+  "rows_loaded": 4,
+  "rows_output": 4,
+  "duplicates_removed": 0,
+  "rows_dropped": 0,
+  "modules_executed": [
+    "text.trim_whitespace",
+    "text.normalize_case",
+    "validation.standardize_phone",
+    "validation.standardize_state",
+    "dedupe.drop_duplicates"
+  ],
+  "processing_time_seconds": 0.0317,
+  "module_stats": {
+    "text.trim_whitespace": {
+      "columns_trimmed": 4,
+      "cells_changed": 0
+    },
+    "text.normalize_case": {
+      "columns_normalized": 4,
+      "case": "lower"
+    },
+    "validation.standardize_phone": {
+      "columns_processed": 0,
+      "values_changed": 0,
+      "values_invalid": 0
+    },
+    "validation.standardize_state": {
+      "columns_processed": 1,
+      "values_changed": 2,
+      "values_unmapped": 0
+    },
+    "dedupe.drop_duplicates": {
+      "duplicates_removed": 0
+    }
+  },
+  "output_path": "C:\\Users\\craig\\dev\\crkdev\\personal-projects\\csv-cleaner\\data\\sample_contacts_cleaned.csv",
+  "report_path": "C:\\Users\\craig\\dev\\crkdev\\personal-projects\\csv-cleaner\\data\\sample_contacts_report.json"
+}

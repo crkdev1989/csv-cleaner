@@ -16,15 +16,33 @@ from cleaner.writers import write_data, write_report
 
 
 def run_cleaner(
-    config_path: str | Path,
+    config_path: str | Path | None = None,
     *,
+    config_dict: dict[str, Any] | None = None,
     config_overrides: dict[str, Any] | None = None,
 ) -> CleaningReport:
     """
-    Run the cleaner for one config file. Returns the CleaningReport.
+    Run the cleaner for one config. Either config_path (file) or config_dict must be provided.
     config_overrides: optional dict merged into loaded config (e.g. for testing).
     """
-    config = load_config(config_path)
+    if config_dict is not None:
+        from cleaner.config import DEFAULT_CONFIG, _deep_merge
+        config = _deep_merge(DEFAULT_CONFIG.copy(), config_dict)
+        # Ensure paths are absolute
+        if config.get("input", {}).get("path"):
+            config["input"]["path"] = str(Path(config["input"]["path"]).resolve())
+        if config.get("output", {}).get("path"):
+            config["output"]["path"] = str(Path(config["output"]["path"]).resolve())
+        if config.get("report", {}).get("path"):
+            config["report"]["path"] = str(Path(config["report"]["path"]).resolve())
+        # Preset may use "pipeline" key; normalize to "modules"
+        if "pipeline" in config:
+            config["modules"] = config.pop("pipeline", [])
+    elif config_path is not None:
+        config = load_config(config_path)
+    else:
+        raise ValueError("Either config_path or config_dict is required")
+
     if config_overrides:
         for key, value in config_overrides.items():
             if isinstance(value, dict) and isinstance(config.get(key), dict):

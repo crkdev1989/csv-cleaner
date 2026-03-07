@@ -35,7 +35,7 @@ def load_data(
     if fmt == "yaml":
         return load_yaml(path, **kwargs)
 
-    raise ValueError(f"Unsupported format: {format}")
+    raise ValueError(f"Unsupported format: {fmt!r}")
 
 
 def load_data_chunked(

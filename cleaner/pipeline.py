@@ -3,6 +3,7 @@ Module loader: resolve module id (e.g. core.drop_empty) to a run(df, config, rep
 Pipeline: run modules in order and pass DataFrame + config + report.
 """
 
+import warnings
 from pathlib import Path
 from typing import Any, Callable
 
@@ -72,6 +73,11 @@ def run_pipeline(
             module_id = spec["id"]
             module_options = spec.get("options", {})
         else:
+            warnings.warn(
+                f"Skipping invalid module spec (expected string or dict with 'id'): {spec!r}",
+                UserWarning,
+                stacklevel=2,
+            )
             continue
 
         run_fn = load_module(module_id, modules_root=modules_root)

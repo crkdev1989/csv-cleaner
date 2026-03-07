@@ -1,0 +1,20 @@
+CSV Cleaner
+-----------
+
+Input file:     C:\Users\craig\dev\crkdev\personal-projects\csv-cleaner\data\sample_contacts.csv
+Output file:    C:\Users\craig\dev\crkdev\personal-projects\csv-cleaner\data\sample_contacts_cleaned.csv
+
+Rows loaded:    4
+Rows output:    4
+Rows removed:   0
+
+Modules applied:
+  • text.trim_whitespace
+  • text.normalize_case
+  • validation.standardize_phone
+  • validation.standardize_state
+  • dedupe.drop_duplicates
+
+Generated files:
+  Cleaned: C:\Users\craig\dev\crkdev\personal-projects\csv-cleaner\data\sample_contacts_cleaned.csv
+  Report:  C:\Users\craig\dev\crkdev\personal-projects\csv-cleaner\data\sample_contacts_report.json

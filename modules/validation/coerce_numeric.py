@@ -16,6 +16,7 @@ def run(
     Convert target columns to numeric. config["options"] may contain:
     - columns: list of column names to coerce (required).
     - errors: "coerce" | "raise" | "ignore" (default: "coerce"). Coerce invalid to NaN.
+      With "raise", the first invalid value in any processed column aborts the entire run.
     - downcast: optional, e.g. "integer" | "float" | "signed" | "unsigned".
     - strip_commas: remove commas before parsing (default: True).
     - strip_currency: remove leading $, £, etc. (default: False).

@@ -51,36 +51,37 @@ def _format_xlsx(path: Path) -> None:
     from openpyxl.utils import get_column_letter
 
     wb = load_workbook(path)
-    sheet = wb.active
-    if sheet is None:
+    try:
+        sheet = wb.active
+        if sheet is None:
+            return
+
+        # 1. Bold header row (row 1) for clear column labels
+        for cell in sheet[1]:
+            cell.font = Font(bold=True)
+
+        # 2. Freeze top row so header stays visible when scrolling
+        sheet.freeze_panes = "A2"
+
+        # 3. Enable autofilter on header row so users can filter/sort in Excel
+        if sheet.max_row > 0 and sheet.max_column > 0:
+            ref = f"A1:{get_column_letter(sheet.max_column)}{sheet.max_row}"
+            sheet.auto_filter.ref = ref
+
+        # 4. Auto-size columns to fit content (readable width, capped to avoid huge columns)
+        for col_idx in range(1, sheet.max_column + 1):
+            max_length = 0
+            for row in range(1, sheet.max_row + 1):
+                cell = sheet.cell(row=row, column=col_idx)
+                if cell.value is not None:
+                    max_length = max(max_length, len(str(cell.value)))
+            # openpyxl width ≈ character count; add padding, clamp to reasonable range
+            width = min(max(max_length + 1, 10), 50)
+            sheet.column_dimensions[get_column_letter(col_idx)].width = width
+
+        wb.save(path)
+    finally:
         wb.close()
-        return
-
-    # 1. Bold header row (row 1) for clear column labels
-    for cell in sheet[1]:
-        cell.font = Font(bold=True)
-
-    # 2. Freeze top row so header stays visible when scrolling
-    sheet.freeze_panes = "A2"
-
-    # 3. Enable autofilter on header row so users can filter/sort in Excel
-    if sheet.max_row > 0 and sheet.max_column > 0:
-        ref = f"A1:{get_column_letter(sheet.max_column)}{sheet.max_row}"
-        sheet.auto_filter.ref = ref
-
-    # 4. Auto-size columns to fit content (readable width, capped to avoid huge columns)
-    for col_idx in range(1, sheet.max_column + 1):
-        max_length = 0
-        for row in range(1, sheet.max_row + 1):
-            cell = sheet.cell(row=row, column=col_idx)
-            if cell.value is not None:
-                max_length = max(max_length, len(str(cell.value)))
-        # openpyxl width ≈ character count; add padding, clamp to reasonable range
-        width = min(max(max_length + 1, 10), 50)
-        sheet.column_dimensions[get_column_letter(col_idx)].width = width
-
-    wb.save(path)
-    wb.close()
 
 
 def _infer_format(path: Path) -> str:

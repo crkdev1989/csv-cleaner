@@ -122,7 +122,9 @@ def run(
         result = raw.apply(lambda v: _normalize_state(v, output))
         unmapped = result.isna()
         total_unmapped += unmapped.sum()
-        changed = (~unmapped) & (raw.str.strip().str.lower() != result.str.lower())
+        # Compare only where result is mapped; avoid .str on all-NaN series
+        compare_to = result.fillna("").str.lower()
+        changed = (~unmapped) & (raw.str.strip().str.lower() != compare_to)
         total_changed += changed.sum()
         df.loc[non_null, col] = raw.where(unmapped, result)
 

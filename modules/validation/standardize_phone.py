@@ -89,7 +89,6 @@ def run(
         # Invalid: normalized to None; leave original
         invalid = result.isna()
         total_invalid += invalid.sum()
-        # Where we got a string back, use it
         changed = (~invalid) & (raw != result)
         total_changed += changed.sum()
         df.loc[non_null, col] = raw.where(invalid, result)

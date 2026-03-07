@@ -1,0 +1,9 @@
+{
+  "pipeline": [
+    {"id": "text.trim_whitespace"},
+    {"id": "text.normalize_case", "options": {"case": "lower"}},
+    {"id": "validation.standardize_phone", "options": {"columns": ["phone_number"], "output": "us"}},
+    {"id": "validation.standardize_state", "options": {"columns": ["state"], "output": "abbr"}},
+    {"id": "dedupe.drop_duplicates", "options": {"keep": "first"}}
+  ]
+}
