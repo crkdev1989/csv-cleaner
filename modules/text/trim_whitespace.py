@@ -15,15 +15,19 @@ def run(
     """
     Strip whitespace from string cells. config["options"] may contain:
     - columns: list of column names to trim (default: all string/object columns).
+    Nulls are left unchanged (not converted to the string "nan").
     """
     options = config.get("options", {})
     columns = options.get("columns")
 
     if columns is not None:
-        # Only trim columns that exist
         cols = [c for c in columns if c in df.columns]
     else:
-        cols = [c for c in df.columns if pd.api.types.is_string_dtype(df[c])]
+        cols = [
+            c
+            for c in df.columns
+            if pd.api.types.is_string_dtype(df[c])
+        ]
 
     if not cols:
         report.record_module(config["module_id"], {"columns_trimmed": 0})
@@ -31,11 +35,15 @@ def run(
 
     df = df.copy()
     changed = 0
+
     for col in cols:
-        before = df[col].astype(str)
+        non_null = df[col].notna()
+        if not non_null.any():
+            continue
+        before = df.loc[non_null, col].astype(str)
         after = before.str.strip()
         if not before.equals(after):
-            df[col] = after
+            df.loc[non_null, col] = after
             changed += (before != after).sum()
 
     report.record_module(

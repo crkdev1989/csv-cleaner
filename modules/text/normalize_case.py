@@ -16,6 +16,7 @@ def run(
     Apply case normalization. config["options"] may contain:
     - columns: list of column names (default: all string/object columns).
     - case: "lower" | "upper" | "title" (default: "lower").
+    Nulls are left unchanged (not converted to the string "nan").
     """
     options = config.get("options", {})
     columns = options.get("columns")
@@ -27,24 +28,29 @@ def run(
     if columns is not None:
         cols = [c for c in columns if c in df.columns]
     else:
-        cols = [c for c in df.columns if pd.api.types.is_string_dtype(df[c])]
+        cols = [
+            c
+            for c in df.columns
+            if pd.api.types.is_string_dtype(df[c])
+        ]
 
     if not cols:
         report.record_module(config["module_id"], {"columns_normalized": 0})
         return df
 
-    if case == "lower":
-        df = df.copy()
-        for col in cols:
-            df[col] = df[col].astype(str).str.lower()
-    elif case == "upper":
-        df = df.copy()
-        for col in cols:
-            df[col] = df[col].astype(str).str.upper()
-    else:
-        df = df.copy()
-        for col in cols:
-            df[col] = df[col].astype(str).str.title()
+    df = df.copy()
+
+    for col in cols:
+        non_null = df[col].notna()
+        if not non_null.any():
+            continue
+        subset = df.loc[non_null, col].astype(str)
+        if case == "lower":
+            df.loc[non_null, col] = subset.str.lower()
+        elif case == "upper":
+            df.loc[non_null, col] = subset.str.upper()
+        else:
+            df.loc[non_null, col] = subset.str.title()
 
     report.record_module(
         config["module_id"],

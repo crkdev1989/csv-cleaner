@@ -14,9 +14,10 @@ def run(
 ) -> pd.DataFrame:
     """
     Remove rows with missing required fields. config["options"] may contain:
-    - columns: list of column names that must be non-null (default: []). Missing columns
-      are skipped; only existing columns are checked.
-    - how: "any" | "all" — drop row if any required column is null (default), or only if all are null.
+    - columns: list of column names that must be non-null (default: []). Missing
+      columns are skipped; only existing columns are checked.
+    - how: "any" | "all" — drop row if any required column is null (default), or
+      only if all are null.
     """
     options = config.get("options", {})
     required = options.get("columns") or []

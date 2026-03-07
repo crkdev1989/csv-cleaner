@@ -23,8 +23,11 @@ def run(
         report.record_module(config["module_id"], {"renamed": []})
         return df
 
-    # Only rename columns that exist
-    rename = {old: new for old, new in mapping.items() if old in df.columns}
+    rename = {
+        old: new
+        for old, new in mapping.items()
+        if old in df.columns
+    }
     if not rename:
         report.record_module(config["module_id"], {"renamed": []})
         return df

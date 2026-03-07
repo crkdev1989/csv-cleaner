@@ -14,8 +14,8 @@ def run(
 ) -> pd.DataFrame:
     """
     Select columns and optionally reorder. config["options"] may contain:
-    - columns: list of column names to keep (order preserved). Missing columns are skipped
-      unless strict is True (then KeyError).
+    - columns: list of column names to keep (order preserved). Missing columns
+      are skipped unless strict is True (then KeyError).
     - strict: if True, raise if any requested column is missing (default: False).
     """
     options = config.get("options", {})
@@ -38,6 +38,10 @@ def run(
     df = df[cols].copy()
     report.record_module(
         config["module_id"],
-        {"columns_selected": len(cols), "columns_dropped": dropped_count, "selected": cols},
+        {
+            "columns_selected": len(cols),
+            "columns_dropped": dropped_count,
+            "selected": cols,
+        },
     )
     return df

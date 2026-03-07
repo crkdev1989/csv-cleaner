@@ -7,6 +7,13 @@ import pandas as pd
 from cleaner.report import CleaningReport
 
 
+def _to_replacement(v):
+    """None -> pd.NA for pandas; other values unchanged."""
+    if v is None:
+        return pd.NA
+    return v
+
+
 def run(
     df: pd.DataFrame,
     config: dict,
@@ -28,24 +35,22 @@ def run(
     else:
         cols = list(df.columns)
 
-    if not cols or not mapping and not per_col:
-        report.record_module(config["module_id"], {"columns_processed": 0, "replacements": 0})
+    if not cols or (not mapping and not per_col):
+        report.record_module(
+            config["module_id"],
+            {"columns_processed": 0, "replacements": 0},
+        )
         return df
 
-    # Normalize mapping: None -> pd.NA for pandas
-    def to_replacement(v):
-        if v is None:
-            return pd.NA
-        return v
-
-    global_map = {k: to_replacement(v) for k, v in mapping.items()}
+    global_map = {k: _to_replacement(v) for k, v in mapping.items()}
     total_replaced = 0
     df = df.copy()
 
     for col in cols:
-        if col not in df.columns:
-            continue
-        col_map = {k: to_replacement(v) for k, v in (per_col.get(col) or global_map).items()}
+        col_map = {
+            k: _to_replacement(v)
+            for k, v in (per_col.get(col) or global_map).items()
+        }
         if not col_map:
             continue
         for old_val, new_val in col_map.items():
