@@ -61,3 +61,9 @@ def infer_format(path: str | Path) -> str:
     ext = p.suffix.lower()
     mapping = {".csv": "csv", ".xlsx": "xlsx", ".xls": "xlsx", ".json": "json", ".yaml": "yaml", ".yml": "yaml"}
     return mapping.get(ext, "csv")
+
+
+def get_extension_for_format(fmt: str) -> str:
+    """Return file extension for a format (e.g. csv -> .csv). Used for derived output filenames."""
+    mapping = {"csv": ".csv", "xlsx": ".xlsx", "json": ".json", "yaml": ".yaml"}
+    return mapping.get((fmt or "csv").lower(), ".csv")

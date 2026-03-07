@@ -8,7 +8,7 @@ from typing import Any
 
 import pandas as pd
 
-from cleaner.config import load_config, infer_format
+from cleaner.config import get_extension_for_format, load_config, infer_format
 from cleaner.loaders import load_data, load_data_chunked
 from cleaner.pipeline import run_pipeline
 from cleaner.report import CleaningReport
@@ -37,10 +37,20 @@ def run_cleaner(
 
     input_path = config["input"]["path"]
     input_fmt = config["input"].get("format") or infer_format(input_path)
-    output_path = config["output"]["path"]
-    output_fmt = config["output"].get("format") or infer_format(output_path)
-    report_path = config.get("report", {}).get("path")
+    output_fmt = config["output"].get("format") or infer_format(config["output"]["path"])
     chunk_size = config.get("chunk_size")
+
+    # Derive output paths from input filename: {stem}_cleaned.{ext}, {stem}_report.json
+    input_stem = Path(input_path).stem
+    output_path_resolved = Path(config["output"]["path"]).resolve()
+    output_dir = output_path_resolved.parent if output_path_resolved.suffix else output_path_resolved
+    output_ext = get_extension_for_format(output_fmt)
+    output_path = str(output_dir / f"{input_stem}_cleaned{output_ext}")
+    report_path = (
+        str(output_dir / f"{input_stem}_report.json")
+        if config.get("report", {}).get("path")
+        else None
+    )
 
     if chunk_size and chunk_size > 0:
         _run_chunked(config, input_path, input_fmt, output_path, output_fmt, report, chunk_size)
