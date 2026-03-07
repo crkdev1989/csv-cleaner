@@ -1,0 +1,53 @@
+{
+  "input": {
+    "path": "../data/sample.csv",
+    "format": "csv"
+  },
+  "output": {
+    "path": "../output/cleaned.csv",
+    "format": "csv"
+  },
+  "report": {
+    "path": "../output/cleaning_report.json"
+  },
+  "modules": [
+    "text.trim_whitespace",
+    {
+      "id": "text.remove_non_printable",
+      "options": {
+        "columns": ["name", "notes"],
+        "collapse_whitespace": false,
+        "strip": true
+      }
+    },
+    {
+      "id": "validation.coerce_numeric",
+      "options": {
+        "columns": ["value"],
+        "errors": "coerce",
+        "strip_commas": true,
+        "strip_currency": false
+      }
+    },
+    {
+      "id": "validation.coerce_datetime",
+      "options": {
+        "columns": ["date"],
+        "errors": "coerce",
+        "dayfirst": false,
+        "utc": false
+      }
+    },
+    {
+      "id": "core.drop_empty_columns",
+      "options": {
+        "treat_blank_strings_as_empty": true
+      }
+    },
+    "core.drop_empty",
+    {
+      "id": "dedupe.drop_duplicates",
+      "options": { "keep": "first" }
+    }
+  ]
+}
