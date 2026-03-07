@@ -9,6 +9,18 @@ from pathlib import Path
 from cleaner.engine import run_cleaner, run_cleaner_batch
 
 
+def _write_summary_file(report) -> str | None:
+    """Write human-readable summary to <output_stem>_summary.txt. Returns path or None."""
+    if not report.output_path:
+        return None
+    out_dir = Path(report.output_path).parent
+    stem = Path(report.input_path).stem if report.input_path else Path(report.output_path).stem.replace("_cleaned", "")
+    summary_path = out_dir / f"{stem}_summary.txt"
+    with open(summary_path, "w", encoding="utf-8") as f:
+        f.write(report.format_summary())
+    return str(summary_path)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Run CSV Cleaner with a config file or directory of configs.",
@@ -39,11 +51,26 @@ def main() -> None:
     if args.quiet:
         sys.exit(0)
 
-    for path, report in results:
-        d = report.to_dict()
-        print(f"Config: {path}")
-        print(f"  rows_loaded={d['rows_loaded']} rows_output={d['rows_output']} "
-              f"time={d['processing_time_seconds']}s modules={d['modules_executed']}")
+    for _config_path, report in results:
+        rows_removed = report.rows_loaded - report.rows_output
+        print("CSV Cleaner")
+        print("-----------")
+        print()
+        print(f"Rows Loaded:  {report.rows_loaded}")
+        print(f"Rows Output:  {report.rows_output}")
+        print(f"Rows Removed:  {rows_removed}")
+        print()
+        print("Modules Applied:")
+        for mod in report.modules_executed:
+            print(f"  • {mod}")
+        print()
+        if report.output_path:
+            print(f"Cleaned file written: {report.output_path}")
+        if report.report_path:
+            print(f"Report written: {report.report_path}")
+        summary_path = _write_summary_file(report)
+        if summary_path:
+            print(f"Summary written: {summary_path}")
     sys.exit(0)
 
 
