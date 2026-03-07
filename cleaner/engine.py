@@ -36,13 +36,18 @@ def run_cleaner(
     report.start_timer()
 
     input_path = config["input"]["path"]
+    if not (input_path and str(input_path).strip()):
+        raise ValueError("config input.path is required and must be non-empty")
     input_fmt = config["input"].get("format") or infer_format(input_path)
-    output_fmt = config["output"].get("format") or infer_format(config["output"]["path"])
+    output_path_cfg = config["output"]["path"]
+    if not (output_path_cfg and str(output_path_cfg).strip()):
+        raise ValueError("config output.path is required and must be non-empty")
+    output_fmt = config["output"].get("format") or infer_format(output_path_cfg)
     chunk_size = config.get("chunk_size")
 
     # Derive output paths from input filename: {stem}_cleaned.{ext}, {stem}_report.json
     input_stem = Path(input_path).stem
-    output_path_resolved = Path(config["output"]["path"]).resolve()
+    output_path_resolved = Path(output_path_cfg).resolve()
     output_dir = output_path_resolved.parent if output_path_resolved.suffix else output_path_resolved
     output_ext = get_extension_for_format(output_fmt)
     output_path = str(output_dir / f"{input_stem}_cleaned{output_ext}")
@@ -51,6 +56,9 @@ def run_cleaner(
         if config.get("report", {}).get("path")
         else None
     )
+    report.output_path = output_path
+    report.report_path = report_path
+    report.input_path = input_path
 
     if chunk_size and chunk_size > 0:
         _run_chunked(config, input_path, input_fmt, output_path, output_fmt, report, chunk_size)

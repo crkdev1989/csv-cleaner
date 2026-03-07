@@ -26,6 +26,10 @@ class CleaningReport:
         # Module-specific metrics (e.g. {"core.drop_empty": {"dropped": 5}})
         self.module_stats: dict[str, dict[str, Any]] = {}
         self._start_time: float | None = None
+        # Output paths (set by engine after run)
+        self.output_path: str | None = None
+        self.report_path: str | None = None
+        self.input_path: str | None = None
 
     def start_timer(self) -> None:
         """Start the processing timer (called by engine at run start)."""
@@ -45,7 +49,7 @@ class CleaningReport:
 
     def to_dict(self) -> dict[str, Any]:
         """Serialize report for JSON/file output."""
-        return {
+        out: dict[str, Any] = {
             "rows_loaded": self.rows_loaded,
             "rows_output": self.rows_output,
             "duplicates_removed": self.duplicates_removed,
@@ -54,3 +58,34 @@ class CleaningReport:
             "processing_time_seconds": round(self.processing_time_seconds, 4),
             "module_stats": self.module_stats,
         }
+        if self.output_path is not None:
+            out["output_path"] = self.output_path
+        if self.report_path is not None:
+            out["report_path"] = self.report_path
+        return out
+
+    def format_summary(self) -> str:
+        """Return a human-readable summary (for CLI and _summary.txt file)."""
+        rows_removed = self.rows_loaded - self.rows_output
+        lines = [
+            "CSV Cleaner",
+            "-----------",
+            "",
+            f"Input file:     {self.input_path or '(not set)'}",
+            f"Output file:    {self.output_path or '(not set)'}",
+            "",
+            f"Rows loaded:    {self.rows_loaded}",
+            f"Rows output:    {self.rows_output}",
+            f"Rows removed:   {rows_removed}",
+            "",
+            "Modules applied:",
+        ]
+        for mod in self.modules_executed:
+            lines.append(f"  • {mod}")
+        lines.extend([
+            "",
+            "Generated files:",
+            f"  Cleaned: {self.output_path or '(none)'}",
+            f"  Report:  {self.report_path or '(none)'}",
+        ])
+        return "\n".join(lines)
