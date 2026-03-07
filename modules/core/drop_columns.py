@@ -27,6 +27,6 @@ def run(
     df = df.drop(columns=cols_present)
     report.record_module(
         config["module_id"],
-        {"columns_dropped": len(cols_present), "dropped": cols_present},
+        {"columns_dropped": len(cols_present), "dropped_columns": cols_present},
     )
     return df
