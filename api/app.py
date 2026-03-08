@@ -8,7 +8,9 @@ Download endpoints serve files under runs/ only (path traversal safe).
 """
 
 import uuid
+from datetime import datetime, timedelta
 from pathlib import Path
+import shutil
 
 from fastapi import APIRouter, FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -39,6 +41,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 router = APIRouter()
+
+
+def cleanup_old_runs() -> None:
+    """Remove job folders under runs/ older than 24 hours. Ignores errors."""
+    if not RUNS_DIR.is_dir():
+        return
+    threshold = (datetime.now() - timedelta(hours=24)).timestamp()
+    for p in RUNS_DIR.iterdir():
+        if not p.is_dir():
+            continue
+        if p.stat().st_mtime < threshold:
+            try:
+                shutil.rmtree(p)
+            except Exception:
+                pass
 
 
 def _ensure_runs_dir() -> None:
@@ -80,6 +97,8 @@ def clean(
     Saves to runs/<job_id>/input/ and writes outputs to runs/<job_id>/output/.
     Returns paths and report stats.
     """
+    cleanup_old_runs()
+
     if not file.filename or not file.filename.strip():
         raise HTTPException(status_code=400, detail="Upload a file (filename required)")
 
