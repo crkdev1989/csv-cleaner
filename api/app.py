@@ -11,6 +11,7 @@ import uuid
 from pathlib import Path
 
 from fastapi import APIRouter, FastAPI, File, Form, HTTPException, Query, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
 # Project root (parent of api/)
@@ -25,6 +26,16 @@ from cleaner.engine import run_cleaner
 app = FastAPI(
     title="CSV Cleaner API",
     description="Upload a file, choose a preset, run the cleaner, download results.",
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://csv.crkdev.com",
+        "https://crkdev.com",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 router = APIRouter()
 
