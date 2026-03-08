@@ -12,9 +12,12 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import shutil
 
-from fastapi import APIRouter, FastAPI, File, Form, HTTPException, Query, UploadFile
+from fastapi import APIRouter, FastAPI, File, Form, HTTPException, Query, UploadFile, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import get_remote_address
 
 # Project root (parent of api/)
 ROOT = Path(__file__).resolve().parent.parent
@@ -41,6 +44,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 router = APIRouter()
+
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
 def cleanup_old_runs() -> None:
@@ -87,8 +94,10 @@ def presets() -> dict:
     return {"presets": names}
 
 
+@limiter.limit("5/minute")
 @router.post("/clean")
 def clean(
+    request: Request,
     file: UploadFile = File(...),
     preset: str = Form(...),
 ) -> dict:
