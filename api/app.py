@@ -17,6 +17,7 @@ from fastapi.responses import FileResponse
 # Project root (parent of api/)
 ROOT = Path(__file__).resolve().parent.parent
 RUNS_DIR = ROOT / "runs"
+MAX_UPLOAD_BYTES = 10 * 1024 * 1024  # 10 MB
 
 # Reuse existing cleaner and CLI preset logic
 from cleaner.cli import _list_presets, _write_summary_file, load_preset
@@ -87,6 +88,17 @@ def clean(
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
+    # Read file and check size before saving to disk
+    try:
+        content = file.file.read()
+    finally:
+        file.file.close()
+    if len(content) > MAX_UPLOAD_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail="File too large. Maximum size is 10MB.",
+        )
+
     job_id = str(uuid.uuid4())
     input_dir = RUNS_DIR / job_id / "input"
     output_dir = RUNS_DIR / job_id / "output"
@@ -95,11 +107,7 @@ def clean(
 
     # Save uploaded file
     input_path = input_dir / (file.filename or "uploaded")
-    try:
-        content = file.file.read()
-        input_path.write_bytes(content)
-    finally:
-        file.file.close()
+    input_path.write_bytes(content)
 
     if not input_path.is_file():
         raise HTTPException(status_code=500, detail="Failed to save upload")
