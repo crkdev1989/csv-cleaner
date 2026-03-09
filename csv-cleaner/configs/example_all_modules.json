@@ -1,0 +1,59 @@
+{
+  "input": {
+    "path": "../data/sample.csv",
+    "format": "csv"
+  },
+  "output": {
+    "path": "../output/cleaned.csv",
+    "format": "csv"
+  },
+  "report": {
+    "path": "../output/cleaning_report.json"
+  },
+  "modules": [
+    "text.trim_whitespace",
+    {
+      "id": "text.normalize_empty_strings",
+      "options": {
+        "empty_values": ["n/a", "NA", "-", "null"]
+      }
+    },
+    {
+      "id": "text.normalize_case",
+      "options": { "case": "lower", "columns": ["name", "notes"] }
+    },
+    {
+      "id": "text.replace_values",
+      "options": {
+        "mapping": { "first": "1st", "second": "2nd", "third": "3rd" }
+      }
+    },
+    {
+      "id": "core.rename_columns",
+      "options": {
+        "mapping": { "notes": "remark", "value": "amount" }
+      }
+    },
+    {
+      "id": "core.drop_columns",
+      "options": { "columns": ["remark"] }
+    },
+    {
+      "id": "core.select_columns",
+      "options": { "columns": ["name", "amount"], "strict": false }
+    },
+    {
+      "id": "core.fill_nulls",
+      "options": { "value": 0, "columns": ["amount"] }
+    },
+    {
+      "id": "core.drop_rows_missing_required",
+      "options": { "columns": ["name"], "how": "any" }
+    },
+    "core.drop_empty",
+    {
+      "id": "dedupe.drop_duplicates",
+      "options": { "keep": "first" }
+    }
+  ]
+}

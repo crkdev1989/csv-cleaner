@@ -1,0 +1,5 @@
+name,phone,zip,state
+alice,(555) 123-4567,12345,CA
+bob,555-987-6543,12345-6789,TX
+carol,555.111.2222,00210,NY
+dave,invalid,99999,CA

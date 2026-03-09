@@ -1,0 +1,473 @@
+full_name,email_address,phone_number,state_name,zip_code,signup_date,purchase_amount,age_years,status,customer_city,company_name,subscribed,junk_notes,mostly_empty,empty_col,row_id
+ruby thomas,,+1 (555) 539-6186,pa,57762,02-05-2025,,unknown,,harrisburg,bright labs,,old import,,,255.0
+ruby wilson,ruby.wilson82@demo.org,+1 (555) 797-9735,district of columbia,69542,07/22/2024,,,active,richmond,,no,delete me,,,412.0
+liam j​ackson,,+1 (555) 550-2860,maryland,34283-5751,"nov 16, 2024","5,551",78,active,towson,unk​nown,n,temp,,,68.0
+peter johnson,peter.johnson86@mail.com,+1 (555) 387-5636,dc,94232-1158,2023-06-01,$978.00,,inactive,washington,none,true,delete me,,,480.0
+katie brown,katie.brown11@sample.net,+1 (555) 589-7637,dc,48827,11/25/2023,,unknown,inactive,annapolis,none,0,,,,420.0
+alice ​miller,alice.miller92@example.com,+1 (555) 548-8175,,66448,2025-01-04,$832.00,18,pending,columbia,,yes,,?,,133.0
+alice anderson,alice.anderson40@sample.net,+1 (555) 648-5346,delaware,90515,"mar 19, 2025","9,606",39,active,columbia,cedar works,yes,,,,409.0
+peter johnson,peter.johnson89@demo.org,+1 (555) 451-1367,dc,85706-7781,04-30-2023,774,,pending,harrisburg,cedar works,no,,,,162.0
+uma johnson,,+1 (555) 454-8634,md,42848,"feb 18, 2024",,unknown,unknown,baltimore,none,false,,,,250.0
+xavier brown,xavier.brown16@demo.org,+1 (555) 248-5480,pa,30140,11-08-2023,"2,763",,,richmond,north star,true,,,,174.0
+olivia smith,olivia.smith76@example.com,+1 (555) 691-7344,virginia,66105,05/01/2025,$566.00,unknown,pending,washington,unknown,no,delete me,,,392.0
+liam garcia,liam.garcia94@demo.org,+1 (555) 104-7282,delaware,29058,2025-06-15,$961.00,58,pending,baltimore,north star,no,,,,363.0
+frank smith,frank.smith80@sample.net,+1 (555) 851-6140,md,59527,2024-09-20,$139.00,68,active,annapolis,bright labs,n,old import,,,26.0
+emma taylor,emma.taylor19@sample.net,+1 (555) 594-4037,md,15468-4391,"aug 13, 2024","1,376",75,active,richmond,blue rocket,no,temp,x,,279.0
+will thomas,,+1 (555) 314-2990,pennsylvania,14997-9945,"jan 29, 2023",$227.00,unknown,inactive,annapolis,none,yes,temp,,,478.0
+quinn davis,quinn.davis93@mail.com,+1 (555) 300-7295,dc,48981,"jul 31, 2023",,,unknown,newark,blue rocket,no,,,,34.0
+henry anderson,henry.anderson11@demo.org,+1 (555) 377-3091,delaware,83872,01/12/2023,"8,090",,pending,harrisburg,cedar works,no,,,,350.0
+alice martinez,alice.martinez77@example.com,+1 (555) 978-7846,md,96464-7752,05-17-2024,$984.00,23,unknown,newark,unknown,yes,temp,,,468.0
+zoe brown,zoe.brown48@mail.com,+1 (555) 817-1935,pa,11259,"jul 04, 2023",986,unknown,pending,richmond,cedar works,y,temp,,,109.0
+alice thomas,alice.thomas83@sample.net,,maryland,77013-7237,07/05/2024,,unknown,unknown,washington,acme co,0,,,,310.0
+uma rodriguez,uma.rodriguez60@sample.net,+1 (555) 794-8322,md,21065,"aug 06, 2023",$134.00,57,pending,richmond,north star,no,,,,452.0
+grace rodriguez,grace.rodriguez17@sample.net,+1 (555) 879-8422,dc,8981,"aug 10, 2024",,unknown,unknown,newark,unknown,y,delete me,,,431.0
+liam rodriguez,liam.rodriguez99@sample.net,+1 (555) 193-5704,va,17073-9041,12/12/2024,,54,inactive,richmond,bright labs,no,temp,,,32.0
+uma j​ackson,,+1 (555) 626-2242,pa,55083,03/30/2023,,unknown,active,washington,none,y,old import,,,293.0
+tina garcia,tina.garcia79@mail.com,+1 (555) 766-2572,maryland,94149,"feb 06, 2024",,,pending,washington,north star,,old import,,,149.0
+frank martinez,frank.martinez98@sample.net,,dc,74191,2025/04/20,,,inactive,baltimore,,true,delete me,,,359.0
+zoe an​derson,,+1 (555) 143-3844,delaware,25558,02-09-2024,$431.00,unknown,inactive,rockville,,n,delete me,,,400.0
+peter miller,peter.miller86@example.com,+1 (555) 603-1760,maryland,48546,03/06/2025,110,unknown,n/a,washington,north star,no,delete me,,,125.0
+ruby thomas,ruby.thomas85@sample.net,+1 (555) 477-6838,maryland,45229,2025/04/11,"8,288",75,unknown,annapolis,none,yes,old import,,,213.0
+alice taylor,alice.taylor77@mail.com,+1 (555) 276-8411,maryland,56372,2024-05-25,"1,327",35,active,rockville,bright labs,y,,,,235.0
+alice jones,alice.jones99@mail.com,+1 (555) 268-9966,md,95986,"jun 29, 2024",,43,active,columbia,blue rocket,0,delete me,,,291.0
+frank garcia,frank.garcia37@sample.net,,md,46556-4702,"jun 20, 2024","1,915",,pending,newark,none,yes,,,,346.0
+,frank.davis22@sample.net,+1 (555) 876-1437,delaware,32836,"feb 11, 2024",,,inactive,newark,blue rocket,yes,,,,395.0
+yara wilson,yara.wilson22@demo.org,,district of columbia,52015,2023/02/05,$357.00,,,columbia,unknown,0,delete me,,,306.0
+,,,,,,,,,,,,,,,
+carol davis,carol.davis16@sample.net,+1 (555) 847-5506,,39076,2025-01-03,$907.00,unknown,inactive,richmond,,no,,,,283.0
+henry moore,henry.moore52@mail.com,+1 (555) 194-4365,district of columbia,28817-5450,11/28/2023,,,active,harrisburg,none,yes,old import,,,207.0
+zoe davis,zoe.davis67@mail.com,+1 (555) 779-3391,dc,28981,2024/12/23,"8,786",58,inactive,rockville,bright labs,yes,delete me,,,219.0
+tina wilson,tina.wilson47@mail.com,+1 (555) 837-6898,district of columbia,79677,2025-03-06,"5,468",,active,harrisburg,unknown,,,,,231.0
+isla brown,isla.brown12@demo.org,+1 (555) 250-4152,va,85618,2023-12-19,,53,n/a,newark,none,yes,delete me,,,492.0
+will ​moore,,+1 (555) 921-4759,virginia,65691,11-27-2024,"1,758",unknown,inactive,annapolis,,y,,,,386.0
+sam thomas,sam.thomas54@example.com,+1 (555) 173-9722,maryland,20222,08/30/2023,"9,828",,n/a,baltimore,unk​nown,,,,,179.0
+david wilson,david.wilson32@example.com,+1 (555) 893-8635,dc,71406,2023-03-23,,44,unknown,harrisburg,,no,delete me,,,500.0
+victor wilson,victor.wilson48@sample.net,+1 (555) 383-7359,dc,87021,2024/03/01,$281.00,19,pending,rockville,acme co,true,temp,,,369.0
+jack jones,jack.jones42@demo.org,,md,66212,09/06/2023,,60,active,newark,blue rocket,1,delete me,,,415.0
+frank jones,,+1 (555) 907-3170,district of columbia,75610-5630,"jan 30, 2025",,,active,washington,blue rocket,0,old import,,,94.0
+mia jackson,mia.jackson21@sample.net,+1 (555) 404-7274,md,72224-6257,2024-02-17,"6,403",unknown,inactive,rockville,acme co,yes,temp,,,92.0
+henry wilson,,+1 (555) 133-1648,maryland,48554,2023/08/12,,52,inactive,newark,north star,y,delete me,,,95.0
+yara thomas,,+1 (555) 436-1572,,80334,10/25/2023,,,pending,harrisburg,,true,,,,353.0
+liam ro​driguez,,+1 (555) 405-4415,va,85107,2025-06-05,,,n/a,harrisburg,,no,,,,161.0
+quinn jones,quinn.jones13@mail.com,+1 (555) 304-8279,delaware,80504,08/31/2024,"3,663",unknown,active,washington,unknown,,temp,,,143.0
+victor garcia,victor.garcia57@sample.net,+1 (555) 320-2123,delaware,90817-1128,2023/09/13,$740.00,39,,newark,unknown,n,delete me,,,169.0
+,grace.smith77@demo.org,+1 (555) 875-2681,maryland,57096-7281,01-05-2023,,67,pending,rockville,unknown,y,old import,,,375.0
+tina rodriguez,tina.rodriguez93@sample.net,+1 (555) 455-3604,,20137,2024-09-14,583,,inactive,washington,n​/a,false,delete me,,,241.0
+carol brown,,+1 (555) 681-6715,district of columbia,98183,2023-08-28,,unknown,,newark,none,false,,,,222.0
+bob anderson,bob.anderson88@mail.com,+1 (555) 226-4038,maryland,2941,2023-03-15,$660.00,unknown,active,baltimore,bright labs,n,,,,465.0
+jack rodriguez,jack.rodriguez54@demo.org,,de,42196,09-30-2023,"1,572",68,active,newark,none,no,,,,490.0
+frank taylor,frank.taylor75@sample.net,+1 (555) 120-3357,,38992,,666,unknown,n/a,annapolis,bright labs,,temp,,,461.0
+alice taylor,alice.taylor97@example.com,+1 (555) 969-1357,de,72032,2025/04/25,880,27,,washington,bright labs,,delete me,,,17.0
+frank rodriguez,frank.rodriguez44@example.com,+1 (555) 672-1741,maryland,30145,02-02-2023,$982.00,,pending,harrisburg,cedar works,,temp,,,383.0
+olivia taylor,olivia.taylor58@demo.org,+1 (555) 336-7414,md,39276,"jul 08, 2023",346,71,unknown,washington,none,no,old import,,,84.0
+henry martinez,henry.martinez13@mail.com,+1 (555) 267-1015,delaware,1842,2023/11/07,,66,n/a,rockville,cedar works,yes,temp,,,155.0
+sam davis,sam.davis98@example.com,+1 (555) 150-4094,pa,,05-05-2023,"6,559",67,inactive,towson,north star,no,,,,404.0
+uma taylor,uma.taylor59@example.com,+1 (555) 925-6307,de,15687-7256,"jul 11, 2023",$958.00,,,annapolis,none,no,temp,,,172.0
+alice miller,,+1 (555) 106-5099,delaware,6884,"jun 13, 2025",$694.00,25,,newark,,true,temp,,,453.0
+alice jackson,alice.jackson39@sample.net,+1 (555) 278-4977,,87446,2025-06-19,"3,409",73,inactive,newark,bright labs,n,temp,,,290.0
+yara wilson,yara.wilson1@sample.net,+1 (555) 679-1477,va,86059,2024-06-30,"1,151",63,inactive,richmond,acme co,yes,temp,,,154.0
+alice johnson,alice.johnson93@demo.org,+1 (555) 673-9135,dc,,03/08/2024,"1,247",33,n/a,columbia,bright labs,0,,,,130.0
+bob anderson,bob.anderson92@mail.com,+1 (555) 621-8015,district of columbia,15429,12-14-2023,$885.00,47,inactive,harrisburg,blue rocket,0,old import,,,338.0
+peter ​miller,peter.miller62@example.com,+1 (555) 253-6763,va,10684-4377,"aug 19, 2023",,,,newark,north​ star,yes,old import,,,189.0
+noah jackson,noah.jackson28@example.com,,virginia,3524,12/30/2024,151,60,pending,towson,,false,,,,145.0
+grace miller,grace.miller21@example.com,,md,92501,2024/06/02,"8,541",67,unknown,columbia,cedar​ works,yes,old import,,,113.0
+ruby ​brown,ruby.brown88@example.com,+1 (555) 804-1967,de,41127,"apr 05, 2025","6,510",,pending,rockville,,no,old import,,,483.0
+carol smith,,+1 (555) 818-7897,,14150,,,,n/a,harrisburg,cedar works,n,temp,,,195.0
+liam rodriguez,liam.rodriguez25@sample.net,+1 (555) 892-5947,dc,28256,2023/11/06,"4,792",,active,washington,cedar works,yes,,,,456.0
+tina jackson,tina.jackson4@demo.org,+1 (555) 993-9300,delaware,88581,"nov 09, 2024",,34,inactive,baltimore,bright labs,1,temp,,,411.0
+victor anderson,,+1 (555) 669-4673,pa,82423-1434,2024-02-03,,,inactive,newark,unk​nown,no,temp,,,385.0
+zoe garcia,zoe.garcia5@demo.org,+1 (555) 109-6532,district of columbia,84301,2023-03-20,"6,238",59,n/a,rockville,acme co,1,old import,,,176.0
+emma ​taylor,emma.taylor61@mail.com,+1 (555) 508-3211,dc,28137,04/27/2025,$769.00,49,inactive,harrisburg,acme co,1,delete me,,,494.0
+yara smith,yara.smith51@example.com,+1 (555) 390-3371,de,92225,2025/02/09,,75,active,washington,,yes,delete me,,,12.0
+liam jackson,,+1 (555) 335-8209,de,41281,01/27/2023,349,19,active,washington,north​ star,y,,,,140.0
+yara j​ohnson,,+1 (555) 862-8694,md,17051,2025-04-22,,,active,richmond,bright labs,,delete me,,,251.0
+peter williams,peter.williams68@sample.net,+1 (555) 355-9085,va,19581-2623,"apr 26, 2024",,73,n/a,richmond,cedar works,yes,,,,237.0
+,,+1 (555) 282-2639,va,32704,12-17-2023,$215.00,72,pending,washington,none,,,,,103.0
+quinn johnson,quinn.johnson28@demo.org,+1 (555) 783-1656,dc,85355,06/13/2024,,,active,columbia,none,false,,,,328.0
+peter wilson,peter.wilson75@sample.net,+1 (555) 168-6701,va,67658,11/24/2024,$350.00,,,towson,cedar works,yes,,,,53.0
+liam smith,liam.smith39@sample.net,+1 (555) 992-1699,district of columbia,90136,01/09/2024,134,59,unknown,baltimore,north star,no,,,,214.0
+,olivia.wilson68@mail.com,,maryland,5917,06/05/2023,"3,011",,,rockville,cedar works,yes,temp,,,208.0
+tina davis,tina.davis8@example.com,+1 (555) 966-6709,maryland,31356,05-06-2025,,,inactive,baltimore,unknown,1,,,,101.0
+peter anderson,peter.anderson88@mail.com,+1 (555) 486-3387,dc,57128,12-27-2023,,,inactive,newark,bright labs,no,,,,264.0
+alice taylor,,+1 (555) 930-8565,md,6399,2023/06/01,"3,816",26,inactive,baltimore,bright labs,no,,,,87.0
+alice garcia,alice.garcia54@mail.com,+1 (555) 348-7555,md,6551,06/14/2024,920,unknown,active,towson,,yes,,,,35.0
+yara garcia,yara.garcia41@sample.net,+1 (555) 631-2468,pennsylvania,11786,"sep 17, 2024","3,707",43,pending,harrisburg,none,no,delete me,,,102.0
+bob rodriguez,bob.rodriguez56@demo.org,+1 (555) 204-9608,district of columbia,65640,2023-08-05,81,unknown,,baltimore,unk​nown,yes,old import,,,407.0
+peter martinez,peter.martinez22@example.com,+1 (555) 477-5072,md,4416,07-18-2024,,,active,annapolis,,y,,,,319.0
+henry moore,henry.moore59@sample.net,+1 (555) 284-1232,dc,38941,05/08/2025,154,24,active,baltimore,brigh​t labs,yes,,,,83.0
+zoe smith,zoe.smith56@sample.net,+1 (555) 667-6409,maryland,2011,05/18/2025,$470.00,unknown,active,richmond,blue ​rocket,1,,,,81.0
+yara jackson,yara.jackson39@example.com,+1 (555) 441-6738,pa,33443-5886,2025/01/11,$102.00,unknown,active,towson,bright labs,yes,delete me,,,85.0
+mia williams,mia.williams91@example.com,+1 (555) 295-5651,dc,35274,"oct 27, 2024",,,,richmond,,yes,temp,?,,472.0
+noah miller,noah.miller61@sample.net,+1 (555) 716-6895,dc,81898-7762,2024-12-29,$319.00,64,pending,richmond,cedar works,true,,,,93.0
+yara garcia,,+1 (555) 836-1267,virginia,88633,2023-05-01,"3,507",,pending,newark,acme co,yes,,,,365.0
+bob jones,bob.jones93@demo.org,+1 (555) 812-2516,dc,49052-4839,10/20/2024,"9,056",52,n/a,washington,none,n,delete me,,,356.0
+isla williams,isla.williams90@sample.net,+1 (555) 430-9819,dc,17185,,,63,inactive,annapolis,n/a,no,,,,381.0
+henry thomas,henry.thomas74@mail.com,+1 (555) 877-3412,pa,28234,08/17/2023,77,,,columbia,north​ star,yes,old import,,,364.0
+victor williams,victor.williams76@sample.net,+1 (555) 239-9140,va,70286,11-01-2024,"6,093",24,,richmond,,y,temp,,,302.0
+victor wilson,victor.wilson11@demo.org,+1 (555) 209-3421,pa,92202,2024/02/10,701,,,harrisburg,,true,delete me,,,242.0
+isla brown,isla.brown37@example.com,+1 (555) 349-8629,pa,93311-7366,"feb 17, 2023",$526.00,,active,harrisburg,unknown,no,delete me,,,426.0
+frank moore,frank.moore91@example.com,+1 (555) 817-3604,md,29661,2025/05/28,,,pending,annapolis,unknown,y,temp,,,244.0
+frank miller,,+1 (555) 574-5505,de,34991-9704,"jan 22, 2023",,47,active,rockville,bright labs,yes,temp,,,389.0
+uma rodriguez,uma.rodriguez35@mail.com,+1 (555) 789-8096,pennsylvania,24297,10-26-2023,,59,,harrisburg,,yes,delete me,,,171.0
+yara ​moore,,+1 (555) 909-1018,virginia,51465,2023-09-10,988,unknown,active,rockville,bright labs,no,temp,,,18.0
+quinn smith,quinn.smith4@demo.org,+1 (555) 876-4197,de,36203,,,,pending,columbia,blue rocket,yes,temp,,,5.0
+isla thomas,isla.thomas95@sample.net,+1 (555) 886-3062,de,12423,2025-02-03,,unknown,active,washington,north star,no,,,,282.0
+uma martinez,uma.martinez8@example.com,+1 (555) 559-6134,district of columbia,87570,09/22/2023,"2,594",unknown,pending,towson,bright labs,no,old import,,,414.0
+,,+1 (555) 654-6297,virginia,64857,2025/04/16,"5,055",19,,columbia,blue rocket,no,old import,,,419.0
+mia jackson,mia.jackson72@mail.com,+1 (555) 688-4037,md,45414,,882,30,active,richmond,unk​nown,0,delete me,,,348.0
+peter jones,peter.jones18@sample.net,+1 (555) 550-8135,,41287,2023/05/17,"3,368",60,unknown,annapolis,,yes,delete me,,,313.0
+david wilson,david.wilson89@example.com,+1 (555) 447-8491,va,49616-4726,2024/08/14,604,52,active,washington,,yes,temp,,,185.0
+sam garcia,sam.garcia24@demo.org,+1 (555) 754-8813,va,84095,2024/01/07,,unknown,active,baltimore,cedar works,yes,temp,,,122.0
+grace smith,grace.smith6@example.com,,dc,36928,"apr 25, 2023",306,50,inactive,washington,acme co,y,temp,,,458.0
+ruby anderson,ruby.anderson56@example.com,+1 (555) 157-1248,dc,83538,10/08/2024,"8,877",43,n/a,washington,blue ​rocket,0,,,,177.0
+will thomas,,+1 (555) 694-6883,dc,90967,02-10-2025,940,60,active,annapolis,bright labs,yes,delete me,,,196.0
+henry thomas,henry.thomas30@demo.org,+1 (555) 987-5945,virginia,15081,05-15-2024,,,inactive,towson,​,true,delete me,,,320.0
+will johnson,will.johnson95@sample.net,+1 (555) 872-1131,virginia,9236,01-14-2023,,,pending,baltimore,unknown,,,,,330.0
+isla wilson,isla.wilson63@mail.com,+1 (555) 204-6481,pennsylvania,93273-1553,01/26/2023,,unknown,pending,baltimore,cedar works,0,old import,,,298.0
+victor johnson,,+1 (555) 190-4249,maryland,51963,03-27-2023,,,active,towson,cedar works,n,,,,111.0
+peter davis,peter.davis10@mail.com,+1 (555) 129-5773,de,82946-7417,,$554.00,51,inactive,rockville,,no,temp,,,432.0
+jack williams,jack.williams73@sample.net,+1 (555) 777-3327,de,37493,2024-02-05,485,,,annapolis,bright labs,yes,delete me,,,187.0
+,emma.jackson64@demo.org,+1 (555) 129-6207,pennsylvania,58427,10/11/2024,$986.00,,inactive,annapolis,,no,old import,,,128.0
+will jones,will.jones16@sample.net,+1 (555) 461-7400,va,10886,2023/07/08,,55,active,columbia,unknown,n,,x,,54.0
+frank martinez,frank.martinez87@example.com,+1 (555) 126-1418,de,16886-8570,"nov 15, 2023",,,inactive,newark,blue ​rocket,n,old import,,,117.0
+katie moore,katie.moore66@example.com,+1 (555) 623-1985,virginia,89995,06/18/2023,707,67,,annapolis,unknown,no,,,,493.0
+quinn williams,,+1 (555) 497-5741,de,73527,08/28/2024,,unknown,active,towson,nort​h star,false,old import,,,474.0
+sam smith,sam.smith45@sample.net,+1 (555) 520-3491,md,68472,2024-09-05,,unknown,pending,baltimore,,yes,,,,358.0
+henry thomas,henry.thomas35@example.com,+1 (555) 583-1918,md,69399-6227,02-27-2025,,19,,harrisburg,,1,,,,332.0
+jack ​garcia,,+1 (555) 471-6790,dc,38439-7507,03-24-2023,,,active,columbia,,true,temp,,,413.0
+liam wilson,liam.wilson24@mail.com,+1 (555) 289-9645,md,49487,04/07/2025,,,active,annapolis,acme co,0,delete me,,,270.0
+quinn martinez,quinn.martinez53@demo.org,+1 (555) 345-8935,virginia,20491-4942,2025/04/25,"6,125",55,n/a,harrisburg,acme co,1,,,,336.0
+yara jackson,yara.jackson66@mail.com,+1 (555) 760-3495,de,15458,"nov 25, 2024",,59,unknown,richmond,,y,,,,121.0
+jack garcia,jack.garcia14@mail.com,+1 (555) 283-3069,md,15113-3760,2023-06-15,$207.00,unknown,pending,rockville,,true,,,,123.0
+alice brown,alice.brown12@sample.net,+1 (555) 349-4349,maryland,26546,"dec 02, 2024",,43,unknown,annapolis,unknown,false,,,,98.0
+yara jackson,yara.jackson73@sample.net,+1 (555) 861-2755,district of columbia,89254,2025/03/24,224,unknown,,towson,n​/a,yes,temp,,,232.0
+frank rodriguez,frank.rodriguez42@mail.com,+1 (555) 978-8341,md,45525,,,,inactive,richmond,bright labs,,temp,,,227.0
+alice williams,alice.williams89@demo.org,+1 (555) 501-8243,pa,37877,01-03-2025,,32,pending,towson,cedar works,false,temp,x,,8.0
+victor miller,victor.miller84@example.com,+1 (555) 505-9378,dc,77703-3867,2023-06-10,517,,pending,harrisburg,unknown,,temp,,,124.0
+yara johnson,yara.johnson81@demo.org,+1 (555) 843-8216,de,23918,05-13-2024,$809.00,,active,harrisburg,acme co,n,,,,399.0
+uma rodriguez,,+1 (555) 732-8449,pa,31701,03/25/2024,"4,791",,active,newark,bright labs,0,delete me,,,96.0
+tina davis,tina.davis59@demo.org,+1 (555) 174-2934,dc,74089,03-19-2025,,unknown,active,towson,unknown,yes,,,,2.0
+uma garcia,uma.garcia71@sample.net,+1 (555) 417-4951,district of columbia,40964-7513,2023-02-25,,unknown,,baltimore,unknown,y,delete me,,,277.0
+bob rodriguez,bob.rodriguez93@sample.net,+1 (555) 730-8368,delaware,5562,,,,inactive,washington,blue ​rocket,yes,,,,342.0
+tina brown,tina.brown10@mail.com,+1 (555) 133-5368,dc,18260,2024/02/10,787,33,inactive,richmond,,yes,temp,,,57.0
+liam johnson,,+1 (555) 503-2475,maryland,76315,,,,inactive,columbia,,y,,,,221.0
+david johnson,david.johnson21@example.com,+1 (555) 626-9084,de,,12/16/2024,$543.00,62,active,washington,bright labs,no,delete me,,,495.0
+xavier williams,xavier.williams92@demo.org,+1 (555) 624-2795,va,49538,"may 16, 2024",,31,inactive,washington,unknown,true,temp,,,253.0
+grace brown,grace.brown27@mail.com,,district of columbia,29777-1420,2025/03/03,,48,pending,baltimore,unknown,true,,,,397.0
+mia taylor,,+1 (555) 656-7200,de,67439-2758,06-05-2023,"4,148",,n/a,rockville,bright labs,no,temp,,,252.0
+carol moore,carol.moore42@sample.net,+1 (555) 845-8825,de,25036,2024/05/20,751,77,active,baltimore,acme co,false,old import,,,408.0
+carol anderson,carol.anderson72@mail.com,+1 (555) 642-5488,va,95899,2024-02-15,964,50,,columbia,cedar works,y,,,,73.0
+henry w​illiams,henry.williams33@example.com,+1 (555) 990-2538,pennsylvania,74696,2023/05/21,,unknown,active,columbia,unknown,yes,,,,50.0
+katie moore,katie.moore71@demo.org,,virginia,64507,2025-03-11,,35,active,harrisburg,unknown,n,old import,,,378.0
+isla jackson,isla.jackson44@sample.net,+1 (555) 164-6223,va,33025-2702,2023-07-23,"6,015",73,pending,washington,north star,no,old import,,,317.0
+katie miller,katie.miller65@demo.org,+1 (555) 745-7277,virginia,64568,"aug 26, 2023",$847.00,34,,harrisburg,acme co,,delete me,,,127.0
+olivia johnson,olivia.johnson1@sample.net,+1 (555) 846-4362,virginia,60142-5707,09/23/2024,"3,339",,,washington,unknown,0,temp,,,13.0
+uma garcia,uma.garcia88@sample.net,+1 (555) 684-7850,delaware,81139,"jan 18, 2025",43,70,pending,annapolis,unknown,no,delete me,,,159.0
+quinn williams,,+1 (555) 194-4011,va,56742-1946,"jan 25, 2025",,,pending,annapolis,n​/a,1,temp,,,118.0
+grace taylor,grace.taylor85@demo.org,+1 (555) 705-4411,md,9579,08-26-2023,$957.00,56,active,annapolis,cedar works,false,delete me,,,396.0
+tina rodriguez,,+1 (555) 697-9952,virginia,34978-1376,2023/05/20,,,,washington,,yes,,,,374.0
+zoe wi​lliams,zoe.williams16@sample.net,+1 (555) 684-7582,dc,58301,2023/07/07,"4,480",,n/a,harrisburg,cedar works,no,,,,263.0
+alice garcia,alice.garcia27@sample.net,+1 (555) 220-2211,district of columbia,70110-4008,"apr 04, 2024",$733.00,,pending,columbia,north star,no,delete me,,,314.0
+carol rodriguez,carol.rodriguez94@sample.net,+1 (555) 915-8952,dc,36932-5568,2025/03/05,,,pending,columbia,unknown,y,,,,339.0
+liam thomas,liam.thomas7@example.com,+1 (555) 904-5178,delaware,9578,2023/12/16,"7,246",66,active,richmond,,no,,,,361.0
+jack miller,,+1 (555) 324-8697,virginia,81069,03-18-2023,693,,n/a,washington,no​ne,no,old import,,,442.0
+noah ​moore,,+1 (555) 118-2107,district of columbia,7871,2025-04-08,815,,unknown,harrisburg,none,1,temp,,,183.0
+noah rodriguez,noah.rodriguez24@example.com,+1 (555) 642-9270,de,40162,02-16-2023,443,51,inactive,washington,cedar works,yes,,,,271.0
+xavier ​martinez,xavier.martinez78@example.com,+1 (555) 627-5382,delaware,30450,08/24/2024,"4,742",,pending,washington,bright labs,false,,,,170.0
+emma miller,emma.miller92@mail.com,+1 (555) 777-4007,va,89243,03/01/2023,207,25,unknown,newark,bright labs,y,,,,430.0
+jack anderson,jack.anderson87@example.com,+1 (555) 867-8518,virginia,45580-9322,02/06/2024,$608.00,,active,baltimore,bright labs,true,old import,x,,91.0
+jack taylor,jack.taylor76@example.com,+1 (555) 490-7993,md,17983-3165,2023-07-11,,,active,washington,blue rocket,no,temp,,,220.0
+uma miller,uma.miller76@sample.net,+1 (555) 641-9327,de,76768,,"7,122",,pending,towson,none,no,,?,,215.0
+liam wilson,liam.wilson30@sample.net,+1 (555) 786-6005,virginia,34382,12/30/2024,,44,pending,baltimore,,y,temp,,,135.0
+frank williams,frank.williams85@demo.org,+1 (555) 989-2109,md,43756,01/21/2023,,,unknown,rockville,unknown,yes,temp,,,71.0
+emma moore,emma.moore22@sample.net,+1 (555) 550-2033,maryland,7633,"may 10, 2023",,32,active,annapolis,unknown,1,temp,,,147.0
+zoe rodriguez,zoe.rodriguez28@demo.org,+1 (555) 557-8993,pa,21819,"apr 11, 2023",204,70,,annapolis,bright labs,no,old import,x,,299.0
+liam johnson,liam.johnson66@sample.net,+1 (555) 463-4077,pennsylvania,8813,07/12/2023,$654.00,,inactive,richmond,,true,,,,236.0
+alice jackson,alice.jackson49@mail.com,+1 (555) 780-4657,pennsylvania,72033,2023-05-26,,51,pending,newark,​,no,temp,,,78.0
+mia garcia,mia.garcia44@sample.net,+1 (555) 899-4866,md,55512,"dec 24, 2024",$499.00,unknown,active,washington,blue rocket,,,,,62.0
+alice jackson,alice.jackson49@demo.org,+1 (555) 703-2251,dc,1632,10/12/2024,,,pending,newark,acme co,yes,,,,15.0
+uma rodriguez,uma.rodriguez46@demo.org,+1 (555) 184-6531,district of columbia,24269,2024-11-03,"4,727",,pending,richmond,bright labs,true,temp,,,97.0
+carol williams,carol.williams86@example.com,+1 (555) 793-2540,district of columbia,23292-5489,02-19-2025,$510.00,18,active,washington,blue rocket,yes,old import,,,100.0
+uma thomas,uma.thomas1@sample.net,,va,34115-9784,2024-11-12,,,active,annapolis,blue rocket,y,,,,268.0
+uma brown,uma.brown75@example.com,+1 (555) 803-7138,virginia,88306,10/16/2023,,unknown,unknown,annapolis,cedar works,yes,old import,,,434.0
+noah thomas,noah.thomas62@sample.net,+1 (555) 100-8525,dc,33260-2065,12-06-2024,140,62,active,richmond,north star,no,delete me,,,455.0
+carol martinez,carol.martinez95@mail.com,,md,26863,07/18/2023,415,unknown,pending,newark,,yes,,,,321.0
+katie smith,,+1 (555) 373-1142,maryland,74896,2024-04-01,$843.00,37,pending,towson,,yes,delete me,,,210.0
+emma smith,emma.smith40@sample.net,+1 (555) 226-5545,dc,31505-4173,10-26-2024,$845.00,unknown,n/a,richmond,unknown,1,old import,,,269.0
+quinn miller,quinn.miller17@example.com,+1 (555) 287-4145,va,23403,,"7,314",,n/a,newark,,0,temp,,,335.0
+noah williams,noah.williams29@example.com,+1 (555) 948-8897,dc,81260,"sep 19, 2024",,76,,rockville,cedar works,n,,,,296.0
+david martinez,,+1 (555) 407-1247,delaware,45383,12/18/2023,520,,active,newark,,no,temp,,,228.0
+liam jones,liam.jones82@example.com,+1 (555) 810-3940,va,46504-3310,"feb 13, 2023",919,62,pending,rockville,north star,1,delete me,,,372.0
+tina smith,tina.smith73@mail.com,+1 (555) 781-3098,virginia,49851,"feb 01, 2025",724,unknown,,baltimore,blue rocket,no,,,,184.0
+yara brown,yara.brown99@mail.com,+1 (555) 323-1713,va,52466-6696,2023/05/07,,30,pending,rockville,none,false,,,,424.0
+david ​miller,david.miller46@mail.com,+1 (555) 296-3378,dc,42148,2023-03-21,,unknown,,rockville,acme co,,,,,281.0
+bob jones,,+1 (555) 412-4309,va,70846,12/16/2023,472,64,,columbia,acme co,yes,,,,82.0
+bob wilson,bob.wilson21@demo.org,+1 (555) 178-2765,maryland,45810,03/21/2023,$820.00,60,inactive,harrisburg,cedar works,,old import,,,322.0
+noah jones,,+1 (555) 893-3573,md,,2024/01/12,,unknown,inactive,rockville,bright labs,yes,,,,318.0
+frank davis,frank.davis11@sample.net,+1 (555) 300-6472,maryland,85130,12/27/2023,,26,inactive,washington,blue rocket,yes,temp,,,209.0
+victor martinez,victor.martinez62@mail.com,+1 (555) 346-8231,pa,3658,2023-09-17,,unknown,inactive,baltimore,bright labs,1,old import,,,66.0
+xavier brown,xavier.brown27@example.com,+1 (555) 523-2869,maryland,24174,2023-12-26,,,pending,rockville,unknown,yes,old import,,,144.0
+carol garcia,carol.garcia71@sample.net,+1 (555) 396-8302,pennsylvania,1238,,,unknown,active,washington,cedar works,,,,,10.0
+henry jones,henry.jones15@mail.com,+1 (555) 517-8207,delaware,53149,2024/02/19,,54,active,annapolis,bright labs,1,old import,,,273.0
+henry smith,henry.smith69@example.com,+1 (555) 949-2322,maryland,11342,2023-04-14,"5,554",unknown,active,baltimore,cedar works,false,,,,248.0
+david johnson,david.johnson48@mail.com,+1 (555) 308-5176,delaware,11491,03/21/2023,,22,pending,baltimore,,,old import,,,23.0
+isla ​thomas,isla.thomas72@demo.org,+1 (555) 207-1202,pa,36151,09/19/2024,525,unknown,,washington,acme co,yes,,,,29.0
+mia jones,mia.jones69@example.com,,md,4271,,384,23,pending,washington,bright labs,true,,,,464.0
+victor thomas,victor.thomas65@mail.com,+1 (555) 692-4567,md,49669,10/03/2024,722,unknown,n/a,newark,,true,,,,142.0
+zoe wilson,zoe.wilson24@example.com,+1 (555) 996-8614,virginia,3652,07/07/2024,190,44,inactive,annapolis,blue rocket,1,old import,,,451.0
+,,+1 (555) 800-2504,va,80049-7397,07-27-2024,,75,active,washington,,y,delete me,,,437.0
+frank williams,frank.williams98@mail.com,+1 (555) 103-6852,md,16830,01/30/2025,772,55,,towson,none,0,,,,234.0
+,olivia.garcia96@mail.com,+1 (555) 977-6938,dc,42922,2025/06/06,,74,n/a,newark,blue rocket,true,,,,376.0
+olivia anderson,olivia.anderson48@example.com,+1 (555) 613-3230,md,51154,04/24/2023,$321.00,,inactive,richmond,blue rocket,,,,,139.0
+xavier miller,xavier.miller19@example.com,+1 (555) 846-3719,pa,85361,04-30-2023,,unknown,inactive,columbia,acme co,0,,,,42.0
+quinn rodriguez,quinn.rodriguez57@example.com,+1 (555) 426-2875,md,98727,2023/08/16,27,32,active,richmond,north star,no,,,,370.0
+isla garcia,isla.garcia73@sample.net,+1 (555) 870-6890,de,72118-9165,"mar 04, 2023",$968.00,unknown,pending,baltimore,north star,n,,,,405.0
+,mia.williams73@mail.com,+1 (555) 324-1724,dc,15416-1298,2023-04-17,,50,,annapolis,unk​nown,true,delete me,,,99.0
+emma anderson,emma.anderson54@example.com,+1 (555) 788-9183,md,57611,"nov 02, 2024",$633.00,,inactive,washington,unknown,1,old import,,,448.0
+ruby jackson,ruby.jackson3@mail.com,+1 (555) 476-4360,dc,3669,05-26-2025,$336.00,unknown,n/a,harrisburg,,no,delete me,,,367.0
+yara thomas,yara.thomas91@example.com,+1 (555) 835-6099,md,62294,10/05/2024,"3,030",,pending,towson,,yes,,,,60.0
+uma smith,uma.smith95@mail.com,+1 (555) 972-3852,dc,30040,04-04-2025,"1,557",,active,towson,north star,yes,delete me,,,217.0
+ruby jackson,ruby.jackson77@example.com,+1 (555) 495-4603,,67010,2025-02-13,$639.00,,n/a,columbia,blue rocket,yes,,,,280.0
+katie moore,katie.moore55@sample.net,+1 (555) 875-3367,va,54381-6999,2025/03/08,,,,newark,,yes,,,,39.0
+frank brown,frank.brown66@sample.net,+1 (555) 906-1045,va,,2025-05-12,$20.00,,,towson,bright labs,no,old import,,,56.0
+isla ​davis,,+1 (555) 282-7131,maryland,49850,05-06-2025,450,,,richmond,north star,0,temp,,,435.0
+emma johnson,emma.johnson51@example.com,+1 (555) 604-7121,de,60269,"jun 23, 2024",111,unknown,,richmond,acme co,0,delete me,,,153.0
+peter williams,peter.williams92@sample.net,+1 (555) 797-6778,de,73625-8302,2025-02-21,,,inactive,richmond,,true,temp,,,446.0
+tina williams,tina.williams52@example.com,+1 (555) 626-7901,md,33105,07-30-2024,,unknown,pending,towson,none,1,temp,x,,65.0
+victor​ smith,victor.smith53@example.com,+1 (555) 776-1327,dc,99593,2023/11/01,$561.00,,,annapolis,acme co,false,,,,324.0
+noah davis,noah.davis90@mail.com,+1 (555) 171-3114,va,69203-3617,"jan 09, 2024",817,65,inactive,baltimore,unk​nown,yes,temp,,,286.0
+henry garcia,henry.garcia70@mail.com,+1 (555) 965-6528,de,5341,11/28/2023,,,,washington,cedar works,1,old import,,,482.0
+bob smith,bob.smith13@demo.org,+1 (555) 492-8350,md,68087,"oct 26, 2023","8,288",69,pending,annapolis,,no,old import,,,498.0
+uma martinez,uma.martinez84@sample.net,+1 (555) 954-3997,delaware,42939-2199,2024/03/14,788,unknown,pending,newark,,yes,delete me,,,202.0
+peter smith,peter.smith85@example.com,+1 (555) 842-3602,md,7099,04-30-2024,164,18,,harrisburg,bright labs,y,,x,,6.0
+noah smith,noah.smith69@demo.org,+1 (555) 201-7709,delaware,85242-4083,"may 13, 2024",,65,active,washington,acme co,n,,,,55.0
+carol jones,carol.jones87@example.com,+1 (555) 194-7982,de,80705,12-27-2024,"3,931",54,inactive,newark,blue rocket,y,temp,,,341.0
+henry miller,henry.miller55@mail.com,,pennsylvania,69256,01-26-2025,"5,283",35,pending,newark,unknown,no,delete me,,,428.0
+sam jones,,+1 (555) 370-7781,virginia,34852,2023-06-16,,46,active,towson,blue rocket,yes,old import,,,390.0
+victor​ garcia,,+1 (555) 155-8574,va,77972-1466,"dec 11, 2023",,,unknown,richmond,blue rocket,1,,,,440.0
+alice johnson,alice.johnson61@sample.net,+1 (555) 162-2938,pa,41336,02/01/2025,581,,active,harrisburg,unknown,no,old import,,,105.0
+jack thomas,jack.thomas11@demo.org,+1 (555) 481-9872,pa,72198-7730,"oct 02, 2024",46,69,inactive,washington,cedar​ works,no,delete me,,,20.0
+yara martinez,yara.martinez99@example.com,+1 (555) 986-3246,maryland,88925-2643,"jun 19, 2024",$333.00,,active,annapolis,acm​e co,yes,,,,484.0
+carol jackson,carol.jackson46@example.com,+1 (555) 339-8551,dc,89344,"may 13, 2025",,,,annapolis,cedar works,no,temp,,,33.0
+bob martinez,bob.martinez61@mail.com,+1 (555) 214-2537,va,10771-4202,2025/02/28,$42.00,29,active,rockville,acme co,yes,,,,193.0
+bob wilson,bob.wilson75@demo.org,,maryland,80007-5934,07-29-2023,$853.00,77,active,columbia,acme co,false,delete me,,,28.0
+carol brown,carol.brown43@example.com,+1 (555) 825-9515,delaware,65839,"mar 16, 2023",552,,active,washington,cedar​ works,false,delete me,,,463.0
+xavier garcia,,+1 (555) 207-8712,va,73086,"jan 13, 2023",739,77,active,harrisburg,acme co,0,,,,46.0
+will ​miller,will.miller49@demo.org,+1 (555) 394-8831,md,43287,01-26-2023,$554.00,45,n/a,annapolis,none,true,temp,,,158.0
+yara moore,yara.moore48@mail.com,+1 (555) 748-5330,dc,59993,05/20/2024,,,pending,richmond,unk​nown,y,temp,,,439.0
+henry brown,,,pennsylvania,28097,2024-09-07,"8,779",31,,newark,none,,temp,,,48.0
+liam jackson,liam.jackson8@demo.org,+1 (555) 990-9316,de,7124,2023/05/14,,,inactive,richmond,,y,,,,194.0
+sam jones,sam.jones82@demo.org,+1 (555) 594-6922,maryland,4235,2024-08-25,,46,inactive,harrisburg,bright labs,yes,,,,382.0
+emma taylor,emma.taylor21@demo.org,+1 (555) 579-5029,md,58090,2023/09/03,518,unknown,,harrisburg,bright labs,no,temp,,,86.0
+xavier moore,xavier.moore45@mail.com,+1 (555) 853-3676,pa,79815,2023-09-20,,,inactive,towson,north star,false,delete me,,,285.0
+victor rodriguez,victor.rodriguez44@demo.org,+1 (555) 562-8688,,69058,2025/04/16,,,active,baltimore,acm​e co,true,,,,226.0
+yara jackson,yara.jackson15@demo.org,+1 (555) 773-4761,va,57875,05-30-2024,$53.00,,pending,rockville,acme co,true,delete me,?,,239.0
+sam williams,sam.williams65@example.com,+1 (555) 342-1773,de,3793,2023/03/31,"2,939",,unknown,harrisburg,blue rocket,yes,,,,67.0
+uma williams,uma.williams25@example.com,+1 (555) 442-3925,va,2994,03-17-2023,283,53,inactive,newark,cedar works,true,,,,443.0
+grace anderson,grace.anderson66@example.com,+1 (555) 157-5136,md,,03-06-2024,"2,229",,inactive,richmond,north star,true,,,,36.0
+bob thomas,bob.thomas76@example.com,+1 (555) 720-1465,pa,30644,2025-04-03,,unknown,unknown,towson,cedar works,no,delete me,,,471.0
+ruby garcia,ruby.garcia64@example.com,+1 (555) 648-4292,pa,36918,2024/07/30,343,75,inactive,harrisburg,north star,true,temp,,,371.0
+alice garcia,alice.garcia54@sample.net,+1 (555) 802-3587,va,51838-8357,02/17/2024,,53,pending,newark,north star,n,delete me,,,173.0
+,yara.taylor71@example.com,+1 (555) 602-2753,pa,,04/13/2025,$635.00,,unknown,richmond,cedar works,no,,,,115.0
+katie martinez,katie.martinez98@demo.org,+1 (555) 345-6579,pa,61759,2023/08/04,$481.00,72,,newark,,,temp,,,305.0
+isla jones,isla.jones25@sample.net,+1 (555) 205-3273,de,1015,,,67,active,washington,no​ne,1,old import,,,175.0
+henry thomas,henry.thomas38@demo.org,+1 (555) 778-4047,maryland,47474,11-28-2023,,18,pending,richmond,bright labs,1,,,,276.0
+uma garcia,uma.garcia97@example.com,+1 (555) 662-1788,md,25993,2023-02-20,$786.00,41,,rockville,none,true,,,,462.0
+peter​ jones,peter.jones51@demo.org,+1 (555) 696-8540,md,80451,"nov 22, 2023",,27,active,columbia,acme co,no,old import,x,,191.0
+mia rodriguez,,+1 (555) 691-6975,md,,"oct 18, 2024",,,inactive,newark,acm​e co,y,old import,,,24.0
+,carol.jackson10@sample.net,,va,94353,2024/05/25,,,active,newark,unknown,n,temp,,,106.0
+peter anderson,peter.anderson85@mail.com,,de,65938,10-16-2023,,unknown,,baltimore,none,0,,,,303.0
+will jones,will.jones12@example.com,+1 (555) 503-4820,dc,6625,04/24/2024,237,,active,annapolis,cedar works,y,temp,,,278.0
+quinn w​illiams,quinn.williams18@example.com,+1 (555) 162-9414,dc,56047-6689,,"6,185",45,pending,washington,,1,old import,,,201.0
+bob williams,,+1 (555) 524-1744,pa,88360,,,,active,newark,acme co,yes,delete me,,,72.0
+peter thomas,peter.thomas78@demo.org,+1 (555) 347-9234,md,5000,09/29/2023,$401.00,unknown,active,annapolis,n​/a,no,,,,265.0
+henry moore,henry.moore27@example.com,+1 (555) 355-2434,pa,38425,11/13/2023,,50,,annapolis,,false,delete me,,,422.0
+ruby brown,,+1 (555) 769-8548,pa,21787,2025/02/24,,75,unknown,richmond,unknown,no,,,,331.0
+uma brown,uma.brown63@example.com,+1 (555) 537-5839,va,75595,2023-03-05,977,,,annapolis,blue rocket,false,,,,205.0
+grace wilson,grace.wilson81@demo.org,+1 (555) 990-7545,pennsylvania,38255-4456,11-10-2024,,unknown,inactive,harrisburg,acme co,1,temp,,,433.0
+jack rodriguez,jack.rodriguez58@demo.org,+1 (555) 809-4491,district of columbia,25332,2024/05/19,$500.00,49,n/a,washington,bright labs,y,old import,,,38.0
+liam rodriguez,liam.rodriguez71@demo.org,+1 (555) 519-3343,,43379,2024-11-10,93,,pending,columbia,,,,,,77.0
+will wilson,will.wilson51@demo.org,+1 (555) 681-1710,delaware,6134,"oct 10, 2023","9,610",,active,newark,none,n,,,,243.0
+david thomas,david.thomas30@sample.net,,pennsylvania,3199,2024-05-09,$530.00,,active,baltimore,north star,no,temp,?,,47.0
+mia brown,mia.brown42@sample.net,,va,63464,2023-05-27,"6,375",,pending,harrisburg,unknown,1,temp,,,257.0
+victor johnson,victor.johnson24@mail.com,+1 (555) 542-6313,va,86946-3005,01/22/2025,,20,active,annapolis,cedar works,1,temp,,,131.0
+zoe anderson,zoe.anderson76@example.com,+1 (555) 608-2761,maryland,47362,2023/02/08,,19,pending,annapolis,north star,1,delete me,,,481.0
+henry martinez,henry.martinez73@demo.org,+1 (555) 105-9127,virginia,58810-8580,10-04-2024,,,active,annapolis,cedar works,0,delete me,,,229.0
+david ​jackson,david.jackson59@demo.org,+1 (555) 572-3522,delaware,17958,11-02-2023,,unknown,active,washington,​,,,,,459.0
+ruby johnson,,+1 (555) 779-8731,md,86348-8492,2023/09/22,438,19,inactive,annapolis,unknown,1,,,,112.0
+will jackson,will.jackson33@demo.org,+1 (555) 245-5254,va,90531-8273,12-22-2023,,78,inactive,towson,blue ​rocket,no,delete me,,,297.0
+carol davis,carol.davis1@example.com,+1 (555) 566-4222,de,76910-6007,2023-08-18,,unknown,active,washington,,0,,,,141.0
+mia thomas,mia.thomas56@sample.net,+1 (555) 953-2378,dc,36549-5090,"nov 06, 2023",,,pending,washington,blue rocket,1,delete me,,,292.0
+noah rodriguez,noah.rodriguez29@sample.net,+1 (555) 541-2132,md,4448,05-15-2024,,,n/a,columbia,,y,temp,,,132.0
+will anderson,will.anderson51@sample.net,+1 (555) 574-1141,pennsylvania,7389,2024-09-13,276,74,inactive,washington,cedar works,1,,,,380.0
+noah a​nderson,,+1 (555) 762-8224,de,72290-7541,"feb 20, 2024",,23,inactive,towson,n/a,true,,,,344.0
+bob williams,bob.williams21@example.com,+1 (555) 857-7798,virginia,68186,"nov 26, 2023",,,active,columbia,,0,delete me,,,146.0
+emma johnson,emma.johnson81@mail.com,+1 (555) 633-2837,delaware,55939-9479,"sep 21, 2023","8,708",52,active,washington,none,true,old import,,,312.0
+uma jones,uma.jones7@mail.com,+1 (555) 223-2475,pa,88436,03-13-2024,,,pending,richmond,bright labs,no,delete me,,,450.0
+emma martinez,emma.martinez96@example.com,+1 (555) 658-3896,dc,37789,07/18/2024,"6,993",,inactive,columbia,,true,delete me,,,150.0
+will jackson,,+1 (555) 306-1615,md,34706-2069,"jun 14, 2024","8,287",,unknown,richmond,north star,yes,delete me,,,485.0
+frank anderson,frank.anderson65@demo.org,+1 (555) 671-6349,dc,76562,2024-09-22,,27,active,washington,no​ne,no,,,,444.0
+katie smith,,+1 (555) 836-6084,va,56693,05-01-2025,,unknown,active,baltimore,north star,no,,,,64.0
+yara wilson,yara.wilson23@example.com,+1 (555) 328-4844,maryland,35195,08-25-2023,,46,active,richmond,,0,delete me,,,489.0
+tina jones,tina.jones29@demo.org,+1 (555) 381-3557,pa,84985,05/22/2023,"5,245",40,pending,baltimore,,1,old import,,,477.0
+katie jones,katie.jones75@example.com,+1 (555) 328-2013,md,1610,2024-07-07,$320.00,,unknown,richmond,n​/a,no,,,,1.0
+tina moore,tina.moore39@mail.com,+1 (555) 218-9094,md,22653-1439,09-05-2023,$182.00,56,active,rockville,bright labs,,temp,,,329.0
+tina johnson,tina.johnson1@example.com,+1 (555) 108-5969,de,51883,02/06/2024,258,,pending,harrisburg,,y,,,,21.0
+ruby davis,,+1 (555) 577-9312,delaware,72274,"jan 10, 2025",734,69,inactive,newark,blue rocket,,,,,247.0
+zoe rodriguez,zoe.rodriguez89@example.com,+1 (555) 648-1591,de,44381-4074,"mar 04, 2024","5,472",,inactive,baltimore,unknown,n,temp,,,352.0
+bob davis,,+1 (555) 433-3024,delaware,80098,2023/12/11,,unknown,n/a,annapolis,cedar works,no,,,,315.0
+victor rodriguez,victor.rodriguez6@demo.org,+1 (555) 158-9290,de,1553,06/29/2023,$529.00,unknown,inactive,towson,cedar works,no,delete me,,,166.0
+liam jackson,liam.jackson38@mail.com,+1 (555) 289-9826,delaware,89267,03/30/2024,"8,109",51,unknown,washington,cedar works,n,temp,,,254.0
+quinn anderson,quinn.anderson83@demo.org,+1 (555) 793-3091,virginia,34651,10/08/2024,838,22,active,harrisburg,brigh​t labs,false,,,,152.0
+tina davis,tina.davis17@example.com,+1 (555) 521-4013,dc,92207,2023/04/05,,unknown,active,newark,acme co,false,temp,,,206.0
+yara ​davis,yara.davis62@demo.org,+1 (555) 492-6885,de,35243-1624,2023-11-28,"8,563",,,rockville,blue rocket,no,,,,25.0
+victor johnson,victor.johnson74@example.com,+1 (555) 723-2480,,61801,,583,,n/a,richmond,none,,,,,168.0
+yara jackson,yara.jackson77@example.com,+1 (555) 967-6531,delaware,1864,04-04-2024,,,active,washington,unknown,true,,,,457.0
+tina taylor,tina.taylor23@mail.com,+1 (555) 843-5048,pa,94572,04-19-2024,$444.00,unknown,inactive,washington,bright labs,y,temp,,,425.0
+noah rodriguez,noah.rodriguez46@demo.org,+1 (555) 575-7334,md,85385,2024-11-15,,,inactive,rockville,unknown,0,temp,?,,327.0
+,uma.davis28@mail.com,+1 (555) 530-9280,dc,55496-4064,"nov 04, 2024",$622.00,20,active,harrisburg,,0,old import,,,204.0
+uma anderson,uma.anderson6@demo.org,+1 (555) 409-6867,delaware,75991,12/23/2023,663,29,unknown,columbia,,n,temp,,,379.0
+bob thomas,bob.thomas47@mail.com,+1 (555) 266-7405,,23597,2023-12-27,,,unknown,richmond,none,true,delete me,,,90.0
+carol martinez,carol.martinez12@mail.com,+1 (555) 577-4944,pa,87795,2024-04-08,,50,active,rockville,unk​nown,1,temp,,,491.0
+jack jones,jack.jones46@sample.net,+1 (555) 824-6199,pa,43019,05/27/2024,513,unknown,pending,richmond,n/a,no,delete me,,,445.0
+xavier williams,xavier.williams25@demo.org,+1 (555) 623-9062,de,35218,08-20-2023,,60,,richmond,,n,temp,,,107.0
+noah miller,noah.miller31@demo.org,+1 (555) 880-1183,va,58836-2476,"mar 31, 2024","6,213",,pending,columbia,unknown,yes,,,,454.0
+quinn rodriguez,quinn.rodriguez16@demo.org,+1 (555) 106-1760,virginia,96247-9205,"sep 18, 2024",636,unknown,unknown,annapolis,n/a,y,delete me,,,40.0
+xavier​ thomas,xavier.thomas82@example.com,+1 (555) 404-7703,de,88111,2024/10/30,757,,pending,towson,unknown,,old import,,,334.0
+frank anderson,,+1 (555) 220-2925,pennsylvania,59676,2024-12-31,,76,active,baltimore,unknown,no,,,,488.0
+isla moore,,+1 (555) 643-1795,district of columbia,78347,"oct 06, 2024",,54,pending,rockville,,n,delete me,,,27.0
+grace brown,grace.brown4@sample.net,+1 (555) 847-3403,maryland,24610-6930,05/04/2024,,unknown,inactive,harrisburg,,no,delete me,,,301.0
+grace miller,grace.miller71@mail.com,+1 (555) 405-6812,md,53399,07/21/2024,784,65,pending,washington,unknown,no,delete me,,,300.0
+henry garcia,henry.garcia97@example.com,+1 (555) 749-6714,pennsylvania,58207,11/04/2023,792,53,,columbia,none,,,,,256.0
+,,+1 (555) 435-1647,va,44795,"mar 24, 2023",,42,unknown,columbia,cedar works,no,delete me,,,441.0
+peter johnson,peter.johnson82@example.com,+1 (555) 890-9130,de,16917,"mar 21, 2024",,52,active,richmond,,no,temp,,,88.0
+alice smith,alice.smith62@example.com,+1 (555) 712-1373,virginia,57039,2023-11-12,,,n/a,newark,blue rocket,y,delete me,,,473.0
+peter johnson,peter.johnson44@sample.net,+1 (555) 931-8788,pennsylvania,5396,2024/04/22,"6,090",unknown,pending,newark,cedar​ works,,old import,,,89.0
+zoe jones,zoe.jones40@example.com,+1 (555) 873-6637,pa,91259-5309,01/05/2023,983,60,,harrisburg,acme co,yes,delete me,,,182.0
+uma williams,uma.williams8@sample.net,+1 (555) 684-1543,dc,52141-3879,,,38,pending,washington,,y,delete me,x,,316.0
+,,,dc,78031-7835,2024/10/27,473,unknown,pending,columbia,acme co,no,,,,218.0
+carol davis,carol.davis17@example.com,+1 (555) 353-4054,va,70084,07-01-2023,,70,pending,newark,unknown,,delete me,,,427.0
+noah moore,noah.moore96@example.com,+1 (555) 547-1350,pa,46020,12/15/2023,,,pending,baltimore,blue rocket,no,,,,148.0
+ruby moore,ruby.moore26@demo.org,+1 (555) 712-4038,pennsylvania,92363,2025/06/11,"9,297",43,inactive,newark,blue rocket,false,,,,134.0
+will wilson,will.wilson50@demo.org,+1 (555) 384-3243,pennsylvania,57024,06/04/2023,,,active,annapolis,blue rocket,y,,,,3.0
+katie taylor,katie.taylor68@sample.net,+1 (555) 528-8330,de,56920,"may 13, 2023",,43,pending,baltimore,blue rocket,false,temp,,,307.0
+alice ​johnson,alice.johnson99@mail.com,+1 (555) 382-5122,md,58758,05/05/2023,"1,313",,unknown,newark,,false,old import,,,156.0
+david miller,david.miller4@demo.org,+1 (555) 837-9732,md,95180-6260,"nov 04, 2023",762,,inactive,baltimore,blue ​rocket,0,delete me,,,333.0
+alice martinez,alice.martinez5@demo.org,+1 (555) 117-7239,md,89410,2025/01/16,"6,892",unknown,inactive,rockville,,n,delete me,,,470.0
+emma miller,emma.miller12@mail.com,,delaware,25608,2025/05/08,$876.00,,active,columbia,cedar works,1,delete me,,,287.0
+,carol.davis30@mail.com,+1 (555) 353-4043,pennsylvania,85796-2061,2023/09/09,,20,n/a,washington,cedar works,no,,,,22.0
+jack taylor,jack.taylor52@mail.com,+1 (555) 590-8664,va,88515,02/01/2024,,78,inactive,towson,none,false,temp,,,137.0
+david martinez,david.martinez36@sample.net,+1 (555) 497-9534,de,77611-9331,"aug 16, 2024","2,850",62,pending,annapolis,brigh​t labs,yes,,,,192.0
+katie martinez,,+1 (555) 755-7712,delaware,61879,"jan 09, 2025",881,,inactive,richmond,,,,,,410.0
+isla davis,isla.davis54@mail.com,+1 (555) 895-4000,,32589-2971,2023/11/30,548,74,inactive,washington,none,no,,,,7.0
+liam ​garcia,liam.garcia20@mail.com,+1 (555) 313-5870,pa,98513-5272,2024/03/26,,31,active,rockville,blue rocket,,old import,,,59.0
+katie r​odriguez,katie.rodriguez82@sample.net,+1 (555) 517-8060,pennsylvania,6050,2025/05/22,386,unknown,pending,columbia,unknown,true,old import,,,80.0
+peter jackson,peter.jackson46@sample.net,+1 (555) 675-2440,dc,3559,2023/02/08,426,,,columbia,,n,old import,,,267.0
+liam davis,liam.davis64@example.com,+1 (555) 127-2850,delaware,95627,11-20-2024,560,,active,washington,,true,,,,447.0
+uma johnson,uma.johnson53@mail.com,+1 (555) 749-8837,dc,10775,2024/01/15,353,53,,washington,,no,delete me,,,79.0
+yara rodriguez,yara.rodriguez1@sample.net,+1 (555) 549-3986,dc,13201,11/06/2023,$758.00,unknown,active,harrisburg,blue ​rocket,true,,,,75.0
+bob williams,bob.williams61@mail.com,+1 (555) 844-8663,va,51203-8920,01/22/2023,$902.00,60,inactive,washington,blue rocket,true,,,,69.0
+victor moore,victor.moore9@example.com,+1 (555) 807-9010,pa,63837,06/25/2023,,55,pending,rockville,acme co,0,old import,,,449.0
+grace moore,grace.moore59@mail.com,+1 (555) 919-7346,maryland,95000,,$107.00,73,inactive,newark,unknown,0,,,,304.0
+grace taylor,grace.taylor99@example.com,+1 (555) 233-8739,pa,76484,2025/05/23,$116.00,32,pending,baltimore,bright labs,1,,,,340.0
+xavier​ smith,xavier.smith69@demo.org,+1 (555) 142-4970,maryland,66158,2023-01-23,,,inactive,annapolis,north star,0,old import,,,360.0
+uma m​iller,uma.miller68@example.com,+1 (555) 147-5717,district of columbia,50821-6770,08/04/2024,"9,573",unknown,active,annapolis,none,,old import,,,387.0
+victor garcia,victor.garcia25@mail.com,+1 (555) 216-6260,md,34696-4796,07/24/2023,243,,unknown,columbia,cedar works,0,delete me,,,136.0
+peter rodriguez,peter.rodriguez28@mail.com,+1 (555) 371-4475,delaware,52774,2024-05-24,,,active,newark,none,false,temp,,,466.0
+katie thomas,katie.thomas39@mail.com,+1 (555) 343-9922,pa,64721-8237,"sep 03, 2023",$446.00,,active,towson,blue rocket,false,delete me,,,294.0
+henry martinez,henry.martinez40@sample.net,+1 (555) 798-3396,dc,28539,"mar 07, 2024",$867.00,,unknown,columbia,acme co,no,,,,357.0
+olivia thomas,olivia.thomas31@example.com,+1 (555) 968-1344,dc,73591,09-30-2023,,,,washington,blue rocket,true,temp,,,151.0
+tina jackson,tina.jackson53@sample.net,,de,51110-4294,05-26-2023,737,,active,rockville,,n,delete me,,,476.0
+henry wilson,,+1 (555) 296-2510,pennsylvania,83981,05-20-2024,,23,pending,newark,cedar works,0,delete me,,,44.0
+henry jones,henry.jones46@mail.com,+1 (555) 995-4885,va,86430-4448,07-03-2023,,unknown,,richmond,unknown,true,,,,272.0
+zoe davis,zoe.davis5@example.com,+1 (555) 472-4265,maryland,60311-4370,2023-02-04,"2,844",24,active,rockville,acm​e co,,temp,,,31.0
+will martinez,will.martinez43@mail.com,+1 (555) 753-7016,md,21365,2025-03-03,$435.00,,active,newark,cedar works,no,,,,163.0
+zoe rodriguez,zoe.rodriguez69@mail.com,+1 (555) 428-2369,maryland,90349-6106,09-17-2024,$964.00,65,,columbia,north star,n,old import,,,469.0
+quinn wilson,quinn.wilson97@sample.net,+1 (555) 566-8599,md,44270,06/26/2023,"2,027",48,inactive,columbia,unknown,false,old import,,,406.0
+liam jackson,liam.jackson70@mail.com,+1 (555) 773-7208,virginia,45013,06-02-2023,$725.00,55,active,towson,none,false,temp,,,197.0
+will m​artinez,will.martinez20@demo.org,+1 (555) 532-3576,dc,1554,08/08/2024,,40,,richmond,unknown,1,,,,43.0
+noah miller,,+1 (555) 957-2243,de,58747,2024/01/27,,unknown,,harrisburg,blue rocket,0,,,,394.0
+bob davis,bob.davis34@demo.org,,de,18412,04-03-2023,331,,pending,rockville,blue ​rocket,y,,,,45.0
+uma jones,,+1 (555) 969-7798,dc,33917,04/25/2024,,19,pending,columbia,no​ne,y,old import,,,373.0
+victor​ garcia,victor.garcia28@demo.org,+1 (555) 322-1949,de,,2024/02/28,$355.00,,n/a,rockville,n/a,,old import,,,266.0
+olivia​ taylor,olivia.taylor86@mail.com,,md,62824,"jul 10, 2023","8,968",69,,columbia,,,,,,160.0
+katie johnson,katie.johnson18@mail.com,+1 (555) 653-3423,va,79459,08/09/2023,$79.00,,active,baltimore,bright labs,yes,temp,,,76.0
+isla jones,isla.jones14@demo.org,+1 (555) 827-5435,delaware,61491-4926,2024-10-04,$543.00,unknown,n/a,rockville,none,true,temp,,,384.0
+emma thomas,emma.thomas84@example.com,+1 (555) 922-1498,de,46177-4546,2024-04-24,"1,821",63,inactive,towson,blue rocket,1,,,,119.0
+grace jones,,+1 (555) 548-9253,va,76138-3908,2024-08-06,,20,active,columbia,cedar works,y,delete me,,,246.0
+noah wilson,,+1 (555) 124-1628,pa,38065,12/30/2024,$972.00,,inactive,towson,,yes,,,,288.0
+jack ​wilson,jack.wilson63@sample.net,+1 (555) 466-6053,pa,2102,2023-10-25,"2,407",20,,columbia,north star,yes,delete me,,,497.0
+zoe davis,zoe.davis46@sample.net,+1 (555) 102-5607,pennsylvania,73559,"nov 07, 2023",$92.00,,unknown,rockville,blue rocket,0,delete me,,,37.0
+grace​ brown,grace.brown37@example.com,+1 (555) 827-9728,,33493,2024/08/22,984,unknown,active,baltimore,bright labs,no,old import,,,129.0
+ruby ​taylor,ruby.taylor93@mail.com,+1 (555) 708-7214,dc,16033,01-02-2024,,,active,newark,n​/a,no,,,,261.0
+xavier taylor,xavier.taylor37@sample.net,+1 (555) 688-1076,virginia,19350-5009,06-05-2025,802,36,n/a,rockville,​,false,old import,,,49.0
+quinn thomas,,+1 (555) 140-3974,district of columbia,98601,"aug 07, 2024",722,62,pending,newark,bright labs,yes,,,,9.0
+grace brown,grace.brown98@example.com,+1 (555) 404-7298,dc,81450,2023/12/19,440,51,,washington,n​/a,y,delete me,,,165.0
+frank​ davis,frank.davis60@mail.com,+1 (555) 321-9896,de,36066-7719,03-22-2024,322,,pending,baltimore,bright labs,yes,old import,,,120.0
+noah thomas,noah.thomas92@example.com,+1 (555) 990-8260,va,58130,02-27-2025,,,active,baltimore,,no,temp,,,249.0
+will anderson,will.anderson89@mail.com,+1 (555) 669-9126,dc,89780-1697,"oct 07, 2023","3,810",,pending,harrisburg,acme co,0,,,,224.0
+sam brown,sam.brown28@mail.com,+1 (555) 876-7684,delaware,82724,07/22/2024,$347.00,46,pending,annapolis,bright labs,,old import,,,167.0
+katie thomas,katie.thomas49@mail.com,+1 (555) 627-4597,district of columbia,89974,02/16/2024,,unknown,active,baltimore,cedar works,no,,,,416.0
+victor brown,,+1 (555) 939-9300,va,37618-2479,06-20-2024,,35,pending,towson,unk​nown,no,,,,14.0
+jack wilson,jack.wilson92@demo.org,+1 (555) 278-4619,va,64182,06/09/2024,724,,,richmond,cedar works,1,old import,,,377.0
+bob martinez,bob.martinez78@mail.com,+1 (555) 976-5009,de,60978,2024/01/09,,,active,washington,blue rocket,false,delete me,,,199.0
+sam rodriguez,sam.rodriguez12@mail.com,+1 (555) 791-9139,pa,70487,03-06-2025,"9,130",,inactive,annapolis,acme co,n,temp,,,355.0
+sam jones,sam.jones26@sample.net,+1 (555) 750-5017,de,17923,05-30-2024,$254.00,26,unknown,columbia,north star,false,,,,70.0
+tina j​ohnson,tina.johnson29@mail.com,+1 (555) 274-2464,maryland,93649,01/21/2025,"4,763",30,pending,newark,north star,,,,,421.0
+victor garcia,victor.garcia72@sample.net,+1 (555) 203-1934,va,7917,03-13-2023,$854.00,unknown,active,newark,,1,temp,,,308.0
+quinn rodriguez,quinn.rodriguez62@example.com,+1 (555) 130-7987,delaware,85222,2023-01-29,,unknown,active,washington,,false,delete me,,,467.0
+victor garcia,victor.garcia91@demo.org,+1 (555) 800-1575,district of columbia,5466,2023-04-07,37,,active,newark,cedar works,1,old import,,,114.0
+peter johnson,peter.johnson24@demo.org,+1 (555) 698-4674,md,38404,2024-03-05,,,pending,newark,n/a,n,,,,326.0
+david martinez,david.martinez14@example.com,+1 (555) 808-2363,dc,11646-3358,02/20/2024,,,active,washington,,no,delete me,,,403.0
+emma brown,emma.brown39@demo.org,+1 (555) 257-1511,de,98563,12-18-2023,$609.00,unknown,n/a,richmond,north star,,delete me,?,,275.0
+xavier moore,xavier.moore16@demo.org,+1 (555) 402-4555,md,40947,"jul 16, 2023",,,active,columbia,,yes,,,,30.0
+mia garcia,mia.garcia67@example.com,+1 (555) 705-5370,district of columbia,15263,"sep 12, 2024",849,65,active,annapolis,,true,,,,401.0
+xavier jackson,xavier.jackson78@example.com,+1 (555) 245-3880,district of columbia,70518,2023-04-17,"7,547",,active,richmond,,yes,old import,,,178.0
+alice garcia,alice.garcia72@example.com,+1 (555) 278-9851,virginia,79237,,$415.00,,pending,baltimore,n/a,0,delete me,,,238.0
+zoe rodriguez,zoe.rodriguez34@mail.com,+1 (555) 908-7699,delaware,29760,"feb 22, 2023",941,75,inactive,rockville,acm​e co,y,temp,,,108.0
+david smith,,+1 (555) 114-7342,delaware,72317,2023-06-05,442,23,active,baltimore,,y,,,,41.0
+zoe garcia,zoe.garcia69@example.com,+1 (555) 779-5480,pa,,2023/02/23,380,,active,harrisburg,,y,delete me,,,391.0
+jack miller,,+1 (555) 788-9547,de,83542,"nov 07, 2023",$719.00,unknown,n/a,towson,bright labs,yes,temp,,,351.0
+henry johnson,henry.johnson64@demo.org,+1 (555) 220-8952,dc,92754-3434,05-10-2023,227,,pending,towson,​,no,,,,164.0
+alice davis,alice.davis67@mail.com,+1 (555) 979-4276,va,18082,02-02-2024,,,inactive,rockville,none,,old import,,,200.0
+noah smith,noah.smith99@demo.org,+1 (555) 785-1354,va,14137-4308,11-28-2024,76,26,unknown,annapolis,unknown,n,,,,309.0
+,will.moore28@example.com,+1 (555) 820-3985,de,85262,"apr 12, 2023",,48,active,washington,north star,no,,,,487.0
+isla williams,isla.williams74@demo.org,+1 (555) 703-6808,delaware,5864,,745,,inactive,harrisburg,blue rocket,y,old import,,,368.0
+isla ​taylor,isla.taylor17@sample.net,+1 (555) 274-4020,dc,69433-3284,04-13-2024,"1,376",44,pending,baltimore,n​/a,true,temp,,,258.0
+mia ​brown,mia.brown89@sample.net,+1 (555) 851-8017,va,82911,,$312.00,,active,annapolis,,1,delete me,,,240.0
+noah johnson,noah.johnson84@example.com,+1 (555) 721-1364,pa,10798-3391,2023/02/20,$416.00,unknown,n/a,newark,none,no,,,,349.0
+liam ​smith,liam.smith5@demo.org,+1 (555) 792-7726,de,42030,06/25/2023,"5,516",,active,newark,,no,old import,,,116.0
+peter anderson,peter.anderson5@mail.com,+1 (555) 930-8892,,3109,2023/10/27,,,inactive,harrisburg,,,,,,110.0
+katie brown,katie.brown7@sample.net,,virginia,43334,05/21/2025,547,unknown,active,richmond,cedar works,y,old import,,,225.0
+noah davis,noah.davis47@sample.net,+1 (555) 741-9713,dc,44319,07/20/2024,,,,newark,unk​nown,no,,,,274.0
+sam m​iller,sam.miller39@sample.net,+1 (555) 994-3643,md,59129,"sep 23, 2024",159,32,active,towson,cedar​ works,1,temp,x,,479.0
+uma miller,uma.miller1@example.com,+1 (555) 231-8259,delaware,46268,09/04/2024,529,43,,towson,bright labs,no,,,,354.0
+carol martinez,carol.martinez28@demo.org,+1 (555) 233-1683,md,68718,"oct 09, 2023",,,,towson,bright labs,n,,,,496.0
+peter taylor,peter.taylor20@mail.com,+1 (555) 925-3944,pa,92460,09-03-2023,,unknown,n/a,baltimore,none,y,,,,337.0
+bob thomas,bob.thomas68@demo.org,+1 (555) 447-1596,de,18185-7229,"may 23, 2025",,,active,newark,unknown,1,old import,,,223.0
+jack martinez,jack.martinez92@example.com,+1 (555) 636-1724,dc,2474,07/23/2024,$285.00,unknown,inactive,rockville,bright labs,n,old import,,,429.0
+carol miller,carol.miller6@mail.com,+1 (555) 655-3888,de,58002-2826,03/26/2025,297,59,inactive,columbia,bright labs,true,,,,104.0
+noah ​smith,,+1 (555) 404-9754,de,90349,2024-03-10,,,active,annapolis,cedar works,1,old import,,,311.0
+emma johnson,emma.johnson72@sample.net,+1 (555) 649-2662,maryland,90487,2024-04-30,,48,active,richmond,blue rocket,yes,,,,4.0
+victor ​anderson,victor.anderson34@sample.net,+1 (555) 976-6568,pa,6747,2024-05-01,,,active,towson,brigh​t labs,n,,,,212.0
+quinn moore,quinn.moore45@sample.net,+1 (555) 401-9888,va,82745-5366,2024/07/12,"2,054",61,,newark,cedar works,yes,,,,198.0
+frank anderson,frank.anderson45@demo.org,+1 (555) 443-5488,de,58415,05-21-2023,$870.00,,inactive,harrisburg,none,true,delete me,,,138.0
+liam martinez,,+1 (555) 280-7049,,54597,"nov 04, 2024",235,38,inactive,harrisburg,,no,,,,216.0
+grace wilson,grace.wilson45@mail.com,+1 (555) 378-8334,md,57477,"sep 14, 2023",,29,active,richmond,blue rocket,no,delete me,,,295.0
+xavier williams,xavier.williams83@demo.org,+1 (555) 758-3648,dc,82140-6453,"apr 05, 2024",147,,active,rockville,cedar works,n,temp,,,16.0
+,,+1 (555) 328-7298,va,31526,2025/05/23,,,inactive,columbia,unk​nown,no,temp,,,366.0
+,frank.miller51@example.com,+1 (555) 183-4265,virginia,46432,2023/09/16,,unknown,n/a,washington,,yes,old import,,,245.0
+noah martinez,noah.martinez74@example.com,+1 (555) 909-8528,delaware,37679,"jan 05, 2023",477,64,pending,newark,north star,true,delete me,,,423.0
+yara garcia,yara.garcia26@demo.org,+1 (555) 216-5624,virginia,,04/01/2023,"4,140",unknown,active,towson,blue rocket,0,old import,,,362.0
+sam garcia,sam.garcia22@mail.com,+1 (555) 411-4229,virginia,31144,2023-03-15,"8,085",,active,towson,,,,,,63.0
+mia brown,mia.brown7@demo.org,+1 (555) 199-2173,pa,66907,06-29-2024,"9,685",,inactive,newark,acme co,true,delete me,,,343.0
+yara johnson,,+1 (555) 844-5712,delaware,89915-2215,2025-05-31,59,64,active,washington,,,delete me,,,323.0
+noah martinez,noah.martinez21@demo.org,+1 (555) 583-8741,de,75025-8596,2023/04/08,"3,336",56,inactive,annapolis,blue rocket,false,,,,181.0
+sam thomas,sam.thomas20@sample.net,+1 (555) 335-8939,va,57363,2024-04-11,"2,407",unknown,,baltimore,acme co,false,old import,,,393.0
+olivia wilson,olivia.wilson9@mail.com,+1 (555) 189-3842,md,,2024/02/10,,39,active,richmond,unk​nown,true,,,,58.0
+frank miller,frank.miller64@mail.com,+1 (555) 511-6745,va,59226,"sep 26, 2023","6,208",,inactive,harrisburg,acm​e co,false,temp,x,,74.0
+uma brown,uma.brown92@example.com,+1 (555) 959-4729,va,67007,02-21-2025,$48.00,61,pending,columbia,none,no,,,,61.0
+will ​garcia,will.garcia91@mail.com,+1 (555) 702-8101,va,73317,2024/02/22,,unknown,n/a,annapolis,cedar works,yes,temp,,,486.0
+bob martinez,bob.martinez38@example.com,+1 (555) 781-1924,va,1309,03/03/2023,407,77,pending,towson,cedar works,no,temp,,,19.0
+yara williams,,+1 (555) 145-5901,de,40308,"mar 16, 2025","5,742",,unknown,washington,none,false,delete me,,,188.0
+victor r​odriguez,,+1 (555) 577-9746,va,48482,2025/01/28,,unknown,inactive,baltimore,north star,1,,,,52.0

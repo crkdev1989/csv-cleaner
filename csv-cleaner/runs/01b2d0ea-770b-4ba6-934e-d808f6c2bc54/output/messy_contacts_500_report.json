@@ -1,0 +1,39 @@
+{
+  "rows_loaded": 500,
+  "rows_output": 472,
+  "duplicates_removed": 28,
+  "rows_dropped": 0,
+  "modules_executed": [
+    "text.trim_whitespace",
+    "text.normalize_case",
+    "validation.standardize_phone",
+    "validation.standardize_state",
+    "dedupe.drop_duplicates"
+  ],
+  "processing_time_seconds": 1.3485,
+  "module_stats": {
+    "text.trim_whitespace": {
+      "columns_trimmed": 14,
+      "cells_changed": 911
+    },
+    "text.normalize_case": {
+      "columns_normalized": 14,
+      "case": "lower"
+    },
+    "validation.standardize_phone": {
+      "columns_processed": 1,
+      "values_changed": 463,
+      "values_invalid": 0
+    },
+    "validation.standardize_state": {
+      "columns_processed": 0,
+      "values_changed": 0,
+      "values_unmapped": 0
+    },
+    "dedupe.drop_duplicates": {
+      "duplicates_removed": 28
+    }
+  },
+  "output_path": "C:\\Users\\craig\\dev\\crkdev\\personal-projects\\csv-cleaner\\runs\\01b2d0ea-770b-4ba6-934e-d808f6c2bc54\\output\\messy_contacts_500_cleaned.csv",
+  "report_path": "C:\\Users\\craig\\dev\\crkdev\\personal-projects\\csv-cleaner\\runs\\01b2d0ea-770b-4ba6-934e-d808f6c2bc54\\output\\messy_contacts_500_report.json"
+}
