@@ -1,0 +1,216 @@
+{
+  "_comment": "Production-oriented law firm leads cleaner config. This uses only modules currently supported by the existing cleaner engine.",
+  "_comment_paths": "input.path is the raw file to clean. output.path/report.path may point to directories, and optional file_name values can force stable stage-specific output names.",
+  "input": {
+    "path": "../inputs/DC_RAW.csv",
+    "format": "csv"
+  },
+  "output": {
+    "path": "../output",
+    "format": "csv",
+    "file_name": "LEADS_CLEAN.csv"
+  },
+  "report": {
+    "path": "../output",
+    "file_name": "LEADS_CLEAN_report.json"
+  },
+  "chunk_size": null,
+  "_comment_schema": "Target schema: firm_name, website, domain, email, phone, contact_name, contact_title, address, city, state, zip, practice_area, source_url, scrape_date, notes",
+  "_comment_mapping": "The active rename mapping below is conservative. Enable or adjust aliases based on the actual source file to avoid duplicate target columns when multiple raw aliases coexist.",
+  "modules": [
+    {
+      "id": "text.trim_whitespace",
+      "options": {
+        "_comment": "Trim leading/trailing whitespace from all string fields."
+      }
+    },
+    {
+      "id": "text.normalize_empty_strings",
+      "options": {
+        "_comment": "Convert common placeholders to null for downstream filtering and normalization.",
+        "empty_values": [
+          "N/A",
+          "n/a",
+          "NA",
+          "na",
+          "none",
+          "None",
+          "null",
+          "NULL",
+          "-"
+        ]
+      }
+    },
+    {
+      "id": "core.drop_empty",
+      "options": {
+        "_comment": "Remove rows that are entirely empty before field-level work."
+      }
+    },
+    {
+      "id": "core.rename_columns",
+      "options": {
+        "_comment": "Map likely raw column names into the target schema. Keep this list readable and adjust per dataset when needed.",
+        "mapping": {
+          "name": "contact_name",
+          "law_firm": "firm_name",
+          "firm": "firm_name",
+          "company": "firm_name",
+          "business_name": "firm_name",
+
+          "url": "website",
+          "website_url": "website",
+          "homepage": "website",
+
+          "email_address": "email",
+          "contact_email": "email",
+
+          "telephone": "phone",
+          "phone_number": "phone",
+
+          "lawyer_name": "contact_name",
+          "attorney_name": "contact_name",
+
+          "city_name": "city",
+          "state_name": "state",
+          "postal_code": "zip",
+          "full_address": "address",
+
+          "practice": "practice_area",
+          "category": "practice_area",
+
+          "source_page": "source_url",
+          "scraped_at": "scrape_date"
+        }
+      }
+    },
+    {
+      "id": "text.normalize_case",
+      "options": {
+        "_comment": "Normalize email addresses to lowercase.",
+        "columns": [
+          "email"
+        ],
+        "case": "lower"
+      }
+    },
+    {
+      "id": "text.normalize_case",
+      "options": {
+        "_comment": "Normalize existing domain values to lowercase if the source already includes a domain column.",
+        "columns": [
+          "domain"
+        ],
+        "case": "lower"
+      }
+    },
+    {
+      "id": "text.normalize_case",
+      "options": {
+        "_comment": "Title-case city names when present.",
+        "columns": [
+          "city"
+        ],
+        "case": "title"
+      }
+    },
+    {
+      "id": "validation.standardize_state",
+      "options": {
+        "_comment": "Convert recognized state names/abbreviations to uppercase 2-letter codes.",
+        "columns": [
+          "state"
+        ],
+        "output": "abbr"
+      }
+    },
+    {
+      "id": "validation.standardize_zip",
+      "options": {
+        "_comment": "Normalize ZIP values to zip5 when possible.",
+        "columns": [
+          "zip"
+        ],
+        "output": "zip5"
+      }
+    },
+    {
+      "id": "validation.standardize_phone",
+      "options": {
+        "_comment": "Normalize phone values into a consistent readable US format when possible; invalid values are left unchanged.",
+        "columns": [
+          "phone"
+        ],
+        "output": "us",
+        "keep_country_code": false
+      }
+    },
+    {
+      "id": "core.fill_nulls",
+      "options": {
+        "_comment": "Keep notes blank where the column already exists. The current cleaner does not add missing columns by itself.",
+        "columns": [
+          "notes"
+        ],
+        "value": ""
+      }
+    },
+    {
+      "id": "core.drop_rows_missing_required",
+      "options": {
+        "_comment": "Safely remove rows only when all strong contact fields are missing.",
+        "columns": [
+          "website",
+          "email",
+          "phone"
+        ],
+        "how": "all"
+      }
+    },
+    {
+      "id": "dedupe.drop_duplicates",
+      "options": {
+        "_comment": "Conservative exact dedupe across columns that exist in the current DC_RAW dataset after renaming.",
+        "subset": [
+          "website",
+          "phone",
+          "firm_name",
+          "city",
+          "state"
+        ],
+        "keep": "first"
+      }
+    },
+    {
+      "id": "core.select_columns",
+      "options": {
+        "_comment": "Keep only the final lead-generation fields and drop everything else.",
+        "columns": [
+          "firm_name",
+          "website",
+          "domain",
+          "email",
+          "phone",
+          "contact_name",
+          "contact_title",
+          "address",
+          "city",
+          "state",
+          "zip",
+          "practice_area",
+          "source_url",
+          "scrape_date",
+          "notes"
+        ],
+        "strict": false
+      }
+    }
+  ],
+  "_comment_optional_extensions": [
+    "Optional custom module: normalize website URLs by validating scheme and removing trailing slash safely.",
+    "Optional custom module: derive domain from website when no raw domain column exists.",
+    "Optional custom module: smart dedupe with true priority/fallback logic and best-row retention.",
+    "Optional custom module: add notes column when missing so it always appears in the final schema.",
+    "Optional custom module: drop rows where firm_name is junk even when another weak identifier exists."
+  ]
+}

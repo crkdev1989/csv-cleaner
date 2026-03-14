@@ -63,17 +63,36 @@ def run_cleaner(
     output_fmt = config["output"].get("format") or infer_format(output_path_cfg)
     chunk_size = config.get("chunk_size")
 
-    # Derive output paths from input filename: {stem}_cleaned.{ext}, {stem}_report.json
+    # Derive output paths from input filename unless explicit file names are configured.
     input_stem = Path(input_path).stem
     output_path_resolved = Path(output_path_cfg).resolve()
     output_dir = output_path_resolved.parent if output_path_resolved.suffix else output_path_resolved
     output_ext = get_extension_for_format(output_fmt)
-    output_path = str(output_dir / f"{input_stem}_cleaned{output_ext}")
-    report_path = (
-        str(output_dir / f"{input_stem}_report.json")
-        if config.get("report", {}).get("path")
-        else None
-    )
+    output_file_name = str(config.get("output", {}).get("file_name") or "").strip()
+    if output_file_name:
+        output_path = str(output_dir / output_file_name)
+    elif output_path_resolved.suffix:
+        output_path = str(output_path_resolved)
+    else:
+        output_path = str(output_dir / f"{input_stem}_cleaned{output_ext}")
+
+    report_path_cfg = config.get("report", {}).get("path")
+    report_file_name = str(config.get("report", {}).get("file_name") or "").strip()
+    if report_path_cfg:
+        report_path_resolved = Path(report_path_cfg).resolve()
+        report_dir = (
+            report_path_resolved.parent
+            if report_path_resolved.suffix
+            else report_path_resolved
+        )
+        if report_file_name:
+            report_path = str(report_dir / report_file_name)
+        elif report_path_resolved.suffix:
+            report_path = str(report_path_resolved)
+        else:
+            report_path = str(report_dir / f"{input_stem}_report.json")
+    else:
+        report_path = None
     report.output_path = output_path
     report.report_path = report_path
     report.input_path = input_path
