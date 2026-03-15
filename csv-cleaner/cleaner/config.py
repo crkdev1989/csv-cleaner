@@ -41,6 +41,10 @@ def load_config(path: str | Path) -> dict[str, Any]:
         config["output"]["path"] = str((base / config["output"]["path"]).resolve())
     if config.get("report", {}).get("path"):
         config["report"]["path"] = str((base / config["report"]["path"]).resolve())
+    if config.get("output_master", {}).get("path"):
+        config["output_master"]["path"] = str((base / config["output_master"]["path"]).resolve())
+    if config.get("output_review", {}).get("path"):
+        config["output_review"]["path"] = str((base / config["output_review"]["path"]).resolve())
 
     return config
 

@@ -1,5 +1,6 @@
 """
 Drop duplicate rows, optionally by subset of columns.
+Used for the strict (email-ready) output path; can be more aggressive than master dedupe.
 """
 
 import pandas as pd
@@ -16,6 +17,7 @@ def run(
     Remove duplicate rows. config["options"] may contain:
     - subset: list of columns to consider for duplicates (default: all)
     - keep: "first" | "last" | False (default "first")
+    Used for EMAIL_READY_LEADS; master leads use identity-key dedupe in leads.emit_master_leads.
     """
     options = config.get("options", {})
     subset = options.get("subset")

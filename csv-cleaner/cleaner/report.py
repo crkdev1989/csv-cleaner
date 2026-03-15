@@ -30,6 +30,12 @@ class CleaningReport:
         self.output_path: str | None = None
         self.report_path: str | None = None
         self.input_path: str | None = None
+        # Master leads (preserved dataset; set by leads.emit_master_leads when output_master is configured)
+        self.master_leads_count: int | None = None
+        self.master_output_path: str | None = None
+        # Review-needed (rows with website but missing strong contact; set by leads.emit_review_needed)
+        self.review_needed_count: int | None = None
+        self.review_needed_output_path: str | None = None
 
     def start_timer(self) -> None:
         """Start the processing timer (called by engine at run start)."""
@@ -47,6 +53,20 @@ class CleaningReport:
         if stats is not None:
             self.module_stats[module_id] = stats
 
+    def _stage_metrics(self) -> dict[str, Any]:
+        """Aggregate stage/pipeline metrics for visibility (row loss between stages)."""
+        m: dict[str, Any] = {
+            "raw_input_rows": self.rows_loaded,
+            "strict_email_ready_rows_written": self.rows_output,
+            "rows_dropped_by_required_filtering": self.rows_dropped,
+            "rows_removed_by_dedupe": self.duplicates_removed,
+        }
+        if self.master_leads_count is not None:
+            m["master_leads_rows_written"] = self.master_leads_count
+        if self.review_needed_count is not None:
+            m["review_needed_rows_written"] = self.review_needed_count
+        return m
+
     def to_dict(self) -> dict[str, Any]:
         """Serialize report for JSON/file output."""
         out: dict[str, Any] = {
@@ -57,11 +77,20 @@ class CleaningReport:
             "modules_executed": self.modules_executed,
             "processing_time_seconds": round(self.processing_time_seconds, 4),
             "module_stats": self.module_stats,
+            "stage_metrics": self._stage_metrics(),
         }
         if self.output_path is not None:
             out["output_path"] = self.output_path
         if self.report_path is not None:
             out["report_path"] = self.report_path
+        if self.master_leads_count is not None:
+            out["master_leads_count"] = self.master_leads_count
+        if self.master_output_path is not None:
+            out["master_output_path"] = self.master_output_path
+        if self.review_needed_count is not None:
+            out["review_needed_count"] = self.review_needed_count
+        if self.review_needed_output_path is not None:
+            out["review_needed_output_path"] = self.review_needed_output_path
         return out
 
     def format_summary(self) -> str:
@@ -78,14 +107,30 @@ class CleaningReport:
             f"Rows output:    {self.rows_output}",
             f"Rows removed:   {rows_removed}",
             "",
-            "Modules applied:",
+            "Stage / pipeline metrics:",
+            f"  Raw input rows:                    {self.rows_loaded}",
+            f"  Strict (email-ready) rows written:  {self.rows_output}",
+            f"  Rows dropped by required-field filtering: {self.rows_dropped}",
+            f"  Rows removed by dedupe:            {self.duplicates_removed}",
         ]
+        if self.master_leads_count is not None:
+            lines.append(f"  Master leads rows written:          {self.master_leads_count}")
+        if self.review_needed_count is not None:
+            lines.append(f"  Review-needed rows written:         {self.review_needed_count}")
+        lines.extend([
+            "",
+            "Modules applied:",
+        ])
         for mod in self.modules_executed:
             lines.append(f"  • {mod}")
         lines.extend([
             "",
-            "Generated files:",
-            f"  Cleaned: {self.output_path or '(none)'}",
-            f"  Report:  {self.report_path or '(none)'}",
+            "Generated files (outputs by purpose):",
+            f"  Email-ready (strict):    {self.output_path or '(none)'} ({self.rows_output} rows)",
+            f"  Report:                  {self.report_path or '(none)'}",
         ])
+        if self.master_output_path is not None:
+            lines.append(f"  Master leads:         {self.master_output_path} ({self.master_leads_count or 0} rows)")
+        if self.review_needed_output_path is not None:
+            lines.append(f"  Review-needed:        {self.review_needed_output_path} ({self.review_needed_count or 0} rows)")
         return "\n".join(lines)

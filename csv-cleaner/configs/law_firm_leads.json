@@ -8,15 +8,26 @@
   "output": {
     "path": "../output",
     "format": "csv",
-    "file_name": "LEADS_CLEAN.csv"
+    "file_name": "EMAIL_READY_LEADS.csv"
+  },
+  "output_master": {
+    "path": "../output",
+    "format": "csv",
+    "file_name": "MASTER_LEADS.csv"
+  },
+  "output_review": {
+    "path": "../output",
+    "format": "csv",
+    "file_name": "REVIEW_NEEDED.csv"
   },
   "report": {
     "path": "../output",
     "file_name": "LEADS_CLEAN_report.json"
   },
   "chunk_size": null,
-  "_comment_schema": "Target schema: firm_name, website, domain, email, phone, contact_name, contact_title, address, city, state, zip, practice_area, source_url, scrape_date, notes",
-  "_comment_mapping": "The active rename mapping below is conservative. Enable or adjust aliases based on the actual source file to avoid duplicate target columns when multiple raw aliases coexist.",
+  "_comment_schema": "Canonical schema: name, law_firm, website, profile_url, source_directory, input_url, contact_page_url, email, phone, city, state, domain, address, zip, practice_area, scrape_date, notes",
+  "_comment_mapping": "Rename maps source aliases to canonical names (name, law_firm). Use identity_path + merge_identity to fill name/law_firm from FindLaw results when enrichment left them empty.",
+  "_comment_identity": "For FindLaw pipeline: set identity_path to the FindLaw results.csv; merge_identity fills name/law_firm from attorney_name/firm_name by matching website.",
   "modules": [
     {
       "id": "text.trim_whitespace",
@@ -50,13 +61,16 @@
     {
       "id": "core.rename_columns",
       "options": {
-        "_comment": "Map likely raw column names into the target schema. Keep this list readable and adjust per dataset when needed.",
+        "_comment": "Map source aliases to canonical names. Output uses name, law_firm everywhere.",
         "mapping": {
-          "name": "contact_name",
-          "law_firm": "firm_name",
-          "firm": "firm_name",
-          "company": "firm_name",
-          "business_name": "firm_name",
+          "contact_name": "name",
+          "firm_name": "law_firm",
+          "firm": "law_firm",
+          "company": "law_firm",
+          "business_name": "law_firm",
+
+          "attorney_name": "name",
+          "lawyer_name": "name",
 
           "url": "website",
           "website_url": "website",
@@ -67,9 +81,7 @@
 
           "telephone": "phone",
           "phone_number": "phone",
-
-          "lawyer_name": "contact_name",
-          "attorney_name": "contact_name",
+          "contact_phone": "phone",
 
           "city_name": "city",
           "state_name": "state",
@@ -80,8 +92,42 @@
           "category": "practice_area",
 
           "source_page": "source_url",
-          "scraped_at": "scrape_date"
+          "source_url": "source_directory",
+          "scraped_at": "scrape_date",
+          "detail_url": "profile_url"
         }
+      }
+    },
+    {
+      "id": "leads.merge_identity",
+      "options": {
+        "_comment": "Fill name/law_firm from identity CSV (e.g. FindLaw results) when enrichment left them empty. Set identity_path in config or override.",
+        "identity_path": "",
+        "merge_key": "website",
+        "fill_columns": {
+          "name": "attorney_name",
+          "law_firm": "firm_name"
+        }
+      }
+    },
+    {
+      "id": "leads.drop_junk_website_rows",
+      "options": {
+        "_comment": "Drop rows where website or input_url contains google.com/maps or amazon.com.",
+        "url_columns": ["website", "input_url"],
+        "substrings": ["google.com/maps", "amazon.com"]
+      }
+    },
+    {
+      "id": "leads.blank_junk_contacts",
+      "options": {
+        "_comment": "Blank junk websites, placeholder emails, and invalid/placeholder phones (000-000-0000, 800-555-6666, invalid US area codes)."
+      }
+    },
+    {
+      "id": "core.drop_empty",
+      "options": {
+        "_comment": "Remove rows that are entirely empty after junk blanking."
       }
     },
     {
@@ -156,6 +202,24 @@
       }
     },
     {
+      "id": "leads.add_lead_flags",
+      "options": {
+        "_comment": "Add has_email, has_contact_page, has_phone for master leads output."
+      }
+    },
+    {
+      "id": "leads.emit_review_needed",
+      "options": {
+        "_comment": "Write rows with website but missing strong contact (email/contact_page/phone) to REVIEW_NEEDED.csv for later review."
+      }
+    },
+    {
+      "id": "leads.emit_master_leads",
+      "options": {
+        "_comment": "Write preserved master leads (identity-key dedupe: profile_url > input_url > firm+city+state+website+name; best-row selection). Set dedupe_key_mode: 'legacy' to use old subset dedupe."
+      }
+    },
+    {
       "id": "core.drop_rows_missing_required",
       "options": {
         "_comment": "Safely remove rows only when all strong contact fields are missing.",
@@ -170,11 +234,11 @@
     {
       "id": "dedupe.drop_duplicates",
       "options": {
-        "_comment": "Conservative exact dedupe across columns that exist in the current DC_RAW dataset after renaming.",
+        "_comment": "Conservative exact dedupe across columns that exist after renaming to canonical names.",
         "subset": [
           "website",
           "phone",
-          "firm_name",
+          "law_firm",
           "city",
           "state"
         ],
@@ -184,21 +248,23 @@
     {
       "id": "core.select_columns",
       "options": {
-        "_comment": "Keep only the final lead-generation fields and drop everything else.",
+        "_comment": "Keep only canonical lead fields. Columns not present are omitted (strict: false).",
         "columns": [
-          "firm_name",
+          "name",
+          "law_firm",
           "website",
-          "domain",
+          "profile_url",
+          "source_directory",
+          "input_url",
+          "contact_page_url",
           "email",
           "phone",
-          "contact_name",
-          "contact_title",
-          "address",
           "city",
           "state",
+          "domain",
+          "address",
           "zip",
           "practice_area",
-          "source_url",
           "scrape_date",
           "notes"
         ],

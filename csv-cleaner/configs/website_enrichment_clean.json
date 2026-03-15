@@ -1,0 +1,112 @@
+{
+  "_comment": "Clean raw website enrichment output (stage-2) from scraper-engine. Input: CONTACT_ENRICHED.csv with columns name, law_firm, website, email, contact_page_url, contact_phone, emails, contact_pages, phones, page_title, source_urls, etc. Output: one best row per firm domain with valid contact path (email or contact_page_url).",
+  "input": {
+    "path": "../../scraper-engine/outputs/justia_website_enrichment_20260315_20260315_162326/CONTACT_ENRICHED.csv",
+    "format": "csv"
+  },
+  "output": {
+    "path": "../output",
+    "format": "csv",
+    "file_name": "ENRICHMENT_CLEAN.csv"
+  },
+  "report": {
+    "path": "../output",
+    "file_name": "ENRICHMENT_CLEAN_report.json"
+  },
+  "chunk_size": null,
+  "modules": [
+    {
+      "id": "text.trim_whitespace",
+      "options": {}
+    },
+    {
+      "id": "core.rename_columns",
+      "options": {
+        "mapping": {
+          "contact_name": "name",
+          "firm_name": "law_firm"
+        }
+      }
+    },
+    {
+      "id": "text.normalize_empty_strings",
+      "options": {
+        "empty_values": ["N/A", "n/a", "NA", "na", "none", "None", "null", "NULL", "-"]
+      }
+    },
+    {
+      "id": "core.drop_empty",
+      "options": {}
+    },
+    {
+      "id": "leads.pick_best_contact",
+      "options": {
+        "emails_column": "emails",
+        "phones_column": "phones",
+        "contact_pages_column": "contact_pages",
+        "website_column": "website",
+        "email_column": "email",
+        "phone_column": "contact_phone",
+        "contact_page_url_column": "contact_page_url",
+        "law_firm_column": "law_firm",
+        "page_title_column": "page_title",
+        "contact_keyword": "contact"
+      }
+    },
+    {
+      "id": "leads.drop_parked_domains",
+      "options": {
+        "columns": ["page_title", "source_urls", "website", "contact_page_url"]
+      }
+    },
+    {
+      "id": "leads.enrich_leads",
+      "options": {
+        "website_column": "website",
+        "email_column": "email",
+        "phone_column": "contact_phone",
+        "firm_name_column": "law_firm",
+        "contact_name_column": "name",
+        "include_score_reasons": true
+      }
+    },
+    {
+      "id": "leads.keep_best_per_domain",
+      "options": {
+        "domain_column": "normalized_domain",
+        "score_column": "lead_score",
+        "keep_empty_domain_rows": false
+      }
+    },
+    {
+      "id": "validation.standardize_phone",
+      "options": {
+        "columns": ["contact_phone"],
+        "output": "us",
+        "keep_country_code": false
+      }
+    },
+    {
+      "id": "core.drop_rows_missing_required",
+      "options": {
+        "columns": ["email", "contact_page_url"],
+        "how": "all"
+      }
+    },
+    {
+      "id": "core.select_columns",
+      "options": {
+        "columns": [
+          "law_firm",
+          "website",
+          "email",
+          "contact_page_url",
+          "contact_phone",
+          "page_title",
+          "source_urls"
+        ],
+        "strict": false
+      }
+    }
+  ]
+}

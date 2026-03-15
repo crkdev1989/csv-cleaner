@@ -1,0 +1,67 @@
+{
+  "input": {
+    "path": "../data/sample_scraped_law_firm_leads.csv",
+    "format": "csv"
+  },
+  "output": {
+    "path": "../output/lead_cleanup.csv",
+    "format": "csv"
+  },
+  "report": {
+    "path": "../output/lead_cleanup_report.json"
+  },
+  "chunk_size": null,
+  "modules": [
+    "text.trim_whitespace",
+    {
+      "id": "text.normalize_empty_strings",
+      "options": {
+        "empty_values": ["n/a", "N/A", "-", "null", "NULL"]
+      }
+    },
+    {
+      "id": "leads.enrich_leads",
+      "options": {
+        "website_column": "website",
+        "email_column": "email",
+        "phone_column": "phone",
+        "firm_name_column": "firm_name",
+        "contact_name_column": "contact_name",
+        "include_score_reasons": true
+      }
+    },
+    {
+      "id": "leads.keep_best_per_domain",
+      "options": {
+        "domain_column": "normalized_domain",
+        "score_column": "lead_score",
+        "keep_empty_domain_rows": true
+      }
+    },
+    {
+      "id": "core.select_columns",
+      "options": {
+        "columns": [
+          "firm_name",
+          "website",
+          "normalized_domain",
+          "page_type",
+          "email",
+          "email_domain",
+          "email_quality",
+          "email_is_junk",
+          "email_is_free_provider",
+          "phone",
+          "phone_digits",
+          "phone_quality",
+          "phone_is_placeholder",
+          "contact_name",
+          "lead_score",
+          "lead_score_reason",
+          "source_url"
+        ],
+        "strict": false
+      }
+    }
+  ]
+}

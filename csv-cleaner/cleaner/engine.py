@@ -35,6 +35,10 @@ def run_cleaner(
             config["output"]["path"] = str(Path(config["output"]["path"]).resolve())
         if config.get("report", {}).get("path"):
             config["report"]["path"] = str(Path(config["report"]["path"]).resolve())
+        if config.get("output_master", {}).get("path"):
+            config["output_master"]["path"] = str(Path(config["output_master"]["path"]).resolve())
+        if config.get("output_review", {}).get("path"):
+            config["output_review"]["path"] = str(Path(config["output_review"]["path"]).resolve())
         # Preset may use "pipeline" key; normalize to "modules"
         if "pipeline" in config:
             config["modules"] = config.pop("pipeline", [])

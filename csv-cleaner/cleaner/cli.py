@@ -7,6 +7,7 @@ import json
 import sys
 from pathlib import Path
 
+from cleaner.config import load_config
 from cleaner.engine import run_cleaner, run_cleaner_batch
 
 
@@ -86,6 +87,12 @@ def main() -> None:
         help="Use a preset pipeline (e.g. leads, crm, scrape). Then path is the input file.",
     )
     parser.add_argument(
+        "--config",
+        type=str,
+        metavar="CONFIG_JSON",
+        help="Load this JSON config and run on the given input file (path is the input file).",
+    )
+    parser.add_argument(
         "--list-presets",
         action="store_true",
         help="List available preset names and exit",
@@ -102,7 +109,12 @@ def main() -> None:
             print(f"  {name}")
         sys.exit(0)
 
+    if args.config and args.preset:
+        parser.error("cannot use both --config and --preset")
+
     if not args.path:
+        if args.config:
+            parser.error("path is required (input file) when using --config")
         parser.error("path is required (config file/directory, or input file with --preset)")
 
     path = Path(args.path)
@@ -110,7 +122,26 @@ def main() -> None:
         print(f"Error: path not found: {path}", file=sys.stderr)
         sys.exit(1)
 
-    if args.preset:
+    if args.config:
+        config_path = Path(args.config)
+        if not config_path.exists():
+            print(f"Error: config file not found: {config_path}", file=sys.stderr)
+            sys.exit(1)
+        if not config_path.suffix.lower() == ".json":
+            print(f"Error: config must be a JSON file: {config_path}", file=sys.stderr)
+            sys.exit(1)
+        if not path.is_file():
+            print(f"Error: with --config, path must be an input file: {path}", file=sys.stderr)
+            sys.exit(1)
+        try:
+            config = load_config(config_path)
+            config["input"] = {**config.get("input", {}), "path": str(path.resolve())}
+            report = run_cleaner(config_dict=config)
+        except Exception as e:
+            print(f"Error: {e}", file=sys.stderr)
+            sys.exit(1)
+        results = [(args.path, report)]
+    elif args.preset:
         try:
             preset = load_preset(args.preset)
         except FileNotFoundError as e:
@@ -147,7 +178,9 @@ def main() -> None:
             print(f"  • {mod}")
         print()
         if report.output_path:
-            print(f"Cleaned file written: {report.output_path}")
+            print(f"Strict (email-ready) file written: {report.output_path}")
+        if report.master_output_path is not None:
+            print(f"Master leads file written: {report.master_output_path} ({report.master_leads_count or 0} rows)")
         if report.report_path:
             print(f"Report written: {report.report_path}")
         summary_path = _write_summary_file(report)

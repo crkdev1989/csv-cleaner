@@ -247,6 +247,50 @@ print(report.to_dict())
 
 ---
 
+### leads
+
+Lead cleanup is opt-in. Add these modules only to scraped lead configs so normal cleaner jobs keep their current behavior.
+
+| Module ID | Purpose |
+|-----------|---------|
+| `leads.enrich_leads` | Add lead-specific domain normalization, page/email/phone classification, and row scoring columns. |
+| `leads.keep_best_per_domain` | Collapse rows to the best record per normalized domain using score and tie-breakers. |
+
+**leads.enrich_leads**
+- **Options:** `website_column`, `email_column`, `phone_column`, `firm_name_column`, `contact_name_column`; booleans `normalize_domain`, `classify_page_type`, `classify_email_quality`, `classify_phone_quality`, `score_rows`, `include_score_reasons`; optional overrides for social/directory domains, path keywords, email domain lists, and `score_weights`.
+- **Outputs:** `normalized_domain`, `page_type`, `email_domain`, `email_quality`, `email_is_junk`, `email_is_free_provider`, `phone_digits`, `phone_quality`, `phone_is_placeholder`, `lead_score`, `lead_score_reason` (column names are configurable).
+- **Behavior:** safely handles empty or malformed URLs/emails/phones and leaves existing columns intact while appending enrichment fields.
+- **Example:**
+```json
+{
+  "id": "leads.enrich_leads",
+  "options": {
+    "website_column": "website",
+    "email_column": "email",
+    "phone_column": "phone",
+    "include_score_reasons": true
+  }
+}
+```
+
+**leads.keep_best_per_domain**
+- **Options:** `domain_column` (default `normalized_domain`), `score_column` (default `lead_score`), `page_type_column`, `email_quality_column`, `phone_quality_column`, `keep_empty_domain_rows` (default true), and optional `completeness_excluded_fields`.
+- **Tie-breakers:** highest score, then homepage rows, then firm-domain email rows, then valid-phone rows, then the row with more populated non-derived fields.
+- **Behavior:** rows with empty normalized domains are kept as-is by default; set `keep_empty_domain_rows` to `false` to drop them from the collapsed output.
+- **Example:**
+```json
+{
+  "id": "leads.keep_best_per_domain",
+  "options": {
+    "domain_column": "normalized_domain",
+    "score_column": "lead_score",
+    "keep_empty_domain_rows": true
+  }
+}
+```
+
+---
+
 ## Example Pipelines
 
 **Basic CSV cleanup** — trim, normalize empties, drop empty rows, dedupe:
@@ -272,6 +316,14 @@ python run.py configs/example_validation_and_more.json
 ```
 
 Config: `configs/example_validation_and_more.json` — input `data/sample.csv`. Pipeline: trim, remove_non_printable, coerce_numeric (e.g. `value`), coerce_datetime (e.g. `date` if present), drop_empty_columns, drop_empty, drop_duplicates. Use when you need type coercion and empty-column removal before other cleaning.
+
+**Scraped lead cleanup** — enrich rows with lead-quality signals, score them, then keep the best row per domain:
+
+```bash
+python run.py configs/example_lead_cleanup.json
+```
+
+Config: `configs/example_lead_cleanup.json` — input `data/sample_scraped_law_firm_leads.csv`. Pipeline: trim, normalize empties, classify lead quality with `leads.enrich_leads`, then collapse to one best outreach-ready row per normalized domain with `leads.keep_best_per_domain`.
 
 ---
 
