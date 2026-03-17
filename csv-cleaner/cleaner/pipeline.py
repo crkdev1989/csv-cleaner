@@ -63,7 +63,8 @@ def run_pipeline(
     and returns transformed df. Report is updated with modules_executed and optional stats.
     """
     modules_root = modules_root or get_modules_dir() / "modules"
-    module_specs = config.get("modules") or []
+    raw_modules = config.get("modules")
+    module_specs = [] if raw_modules is None else (list(raw_modules) if hasattr(raw_modules, "__iter__") and not isinstance(raw_modules, str) else [raw_modules])
 
     for spec in module_specs:
         if isinstance(spec, str):

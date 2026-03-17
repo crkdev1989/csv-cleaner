@@ -5,13 +5,19 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import pandas as pd
+
 from cleaner.engine import run_cleaner
 from cleaner.lead_cleanup import (
     classify_email_quality,
     classify_page_type,
     classify_phone_quality,
+    is_email_clearly_junk,
+    normalize_email_for_validation,
     normalize_root_domain,
 )
+from cleaner.pipeline import load_module
+from cleaner.report import CleaningReport
 
 
 class LeadCleanupTests(unittest.TestCase):
@@ -89,6 +95,89 @@ class LeadCleanupTests(unittest.TestCase):
             "valid",
             classify_phone_quality("(919) 851-1234")["phone_quality"],
         )
+
+    def test_milestone4_email_validation_preserves_generic_role_addresses(self) -> None:
+        """Generic role addresses (intake@, info@, contact@, office@, help@, admin@) must never be rejected."""
+        for addr in (
+            "intake@firm.com",
+            "info@firm.com",
+            "contact@firm.com",
+            "office@firm.com",
+            "help@smallfirm.co",
+            "admin@company.org",
+            "referrals@lawfirm.com",
+            "support@business.net",
+        ):
+            normalized = normalize_email_for_validation(addr)
+            self.assertIn("@", normalized, msg=addr)
+            is_junk, reason = is_email_clearly_junk(normalized)
+            self.assertFalse(is_junk, msg=f"expected to preserve {addr!r} (reason={reason})")
+            self.assertEqual(reason, "")
+
+    def test_milestone4_email_validation_rejects_placeholders_and_junk(self) -> None:
+        """Clearly bad emails should be rejected (placeholder domains, noreply, malformed, asset-like)."""
+        # Placeholder / example domains
+        for addr in ("test@test.com", "example@example.com", "foo@bar.com", "user@example.com", "johndoe@email.com"):
+            normalized = normalize_email_for_validation(addr)
+            is_junk, reason = is_email_clearly_junk(normalized)
+            self.assertTrue(is_junk, msg=f"expected to reject {addr!r}")
+            self.assertEqual(reason, "placeholder_junk")
+        # noreply-style
+        for addr in ("noreply@anywhere.com", "no-reply@company.com", "donotreply@firm.com"):
+            normalized = normalize_email_for_validation(addr)
+            is_junk, reason = is_email_clearly_junk(normalized)
+            self.assertTrue(is_junk, msg=f"expected to reject {addr!r}")
+            self.assertEqual(reason, "placeholder_junk")
+        # Asset-like
+        is_junk, _ = is_email_clearly_junk(normalize_email_for_validation("x@2x.png"))
+        self.assertTrue(is_junk)
+        # Malformed: no @, empty, or bad structure
+        for bad in ("no-at-sign", "", "local@", "@domain.com", "a b@c.com", "a@b"):
+            n = normalize_email_for_validation(bad)
+            val = n if n else bad
+            is_junk, reason = is_email_clearly_junk(val)
+            self.assertTrue(is_junk, msg=f"expected malformed for {bad!r}")
+            self.assertEqual(reason, "malformed")
+
+    def test_milestone4_normalize_email_safe(self) -> None:
+        """Normalization trims, lowercases, strips angle brackets and trailing punctuation."""
+        self.assertEqual(normalize_email_for_validation("  Info@Firm.COM  "), "info@firm.com")
+        self.assertEqual(normalize_email_for_validation("<info@firm.com>"), "info@firm.com")
+        self.assertEqual(normalize_email_for_validation("contact@firm.com;"), "contact@firm.com")
+        self.assertEqual(normalize_email_for_validation("intake@firm.com."), "intake@firm.com")
+
+    def test_milestone4_blank_junk_contacts_preserves_generic_emails_and_metrics(self) -> None:
+        """blank_junk_contacts keeps generic role emails, blanks junk, and records email metrics."""
+        run = load_module("leads.blank_junk_contacts")
+        report = CleaningReport()
+        df = pd.DataFrame({
+            "email": [
+                "intake@firm.com",
+                "info@lawfirm.org",
+                "test@test.com",
+                "noreply@company.com",
+                "contact@smallfirm.co",
+                "  Office@Firm.COM  ",
+            ],
+        })
+        config = {"module_id": "leads.blank_junk_contacts", "options": {"email_column": "email"}}
+        out = run(df, config, report)
+        self.assertIn("leads.blank_junk_contacts", report.module_stats)
+        stats = report.module_stats["leads.blank_junk_contacts"]
+        self.assertEqual(stats["emails_inspected"], 6)
+        self.assertEqual(stats["emails_kept"], 4)
+        self.assertEqual(stats["email_blanked"], 2)
+        # Generic role addresses kept (and normalized)
+        self.assertEqual(out.at[0, "email"], "intake@firm.com")
+        self.assertEqual(out.at[1, "email"], "info@lawfirm.org")
+        self.assertEqual(out.at[4, "email"], "contact@smallfirm.co")
+        self.assertEqual(out.at[5, "email"], "office@firm.com")
+        # Junk blanked
+        self.assertTrue(pd.isna(out.at[2, "email"]))
+        self.assertTrue(pd.isna(out.at[3, "email"]))
+        self.assertIn("emails_rejected_malformed", stats)
+        self.assertIn("emails_rejected_placeholder_junk", stats)
+        self.assertIn("emails_normalized", stats)
 
     def test_lead_cleanup_modules_keep_best_record_per_normalized_domain(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

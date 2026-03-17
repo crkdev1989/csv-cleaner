@@ -41,6 +41,7 @@ def run(
     dropped = rows_before - len(df)
 
     report.rows_dropped += dropped
+    report.rows_dropped_junk += dropped
     report.record_module(
         config["module_id"],
         {"rows_dropped": dropped, "url_columns": cols, "substrings": list(substrings)},

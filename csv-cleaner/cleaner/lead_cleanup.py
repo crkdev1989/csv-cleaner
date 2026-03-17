@@ -9,6 +9,8 @@ from typing import Any
 from urllib.parse import urlsplit
 import re
 
+import pandas as pd
+
 
 COMMON_SECOND_LEVEL_SUFFIXES = {
     "ac",
@@ -138,6 +140,90 @@ DEFAULT_SCORE_WEIGHTS = {
 }
 EMAIL_PATTERN = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 NON_DIGIT_PATTERN = re.compile(r"\D+")
+
+# Milestone 4: Conservative email validation. Only reject clearly bad; preserve generic role addresses.
+
+# Domains that are always placeholder/fake (reject)
+PLACEHOLDER_EMAIL_DOMAINS = frozenset({
+    "example.com", "example.org", "example.net", "example.edu",
+    "email.com", "test.com", "test.org", "foo.com", "bar.com",
+    "domain.com", "sample.com", "invalid.com", "placeholder.com",
+})
+# Local parts that are non-outreach (noreply etc.); reject even at firm domain
+NO_REPLY_LOCAL_PARTS = frozenset({
+    "noreply", "no-reply", "donotreply", "do-not-reply", "no_reply",
+})
+# Generic role addresses we must NEVER reject (intake@, info@, contact@, etc.)
+GENERIC_ROLE_LOCAL_PARTS_PRESERVE = frozenset({
+    "admin", "contact", "help", "info", "intake", "office", "referrals", "support",
+})
+# Domain suffixes that indicate asset/file, not email (reject)
+ASSET_DOMAIN_SUFFIXES = frozenset({"png", "jpg", "jpeg", "gif", "svg", "webp", "ico", "pdf", "css", "js"})
+
+
+def normalize_email_for_validation(value: Any) -> str:
+    """
+    Safe normalization for validation: trim, lowercase, strip angle brackets and trailing punctuation.
+    Preserves the actual address; does not over-transform.
+    """
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return ""
+    s = str(value).strip()
+    if not s:
+        return ""
+    s = s.lower()
+    if s.startswith("<") and ">" in s:
+        s = s.split(">", 1)[0].lstrip("<").strip()
+    if s and s[-1] in (",", ";", "."):
+        s = s.rstrip(".,;").strip()
+    return s
+
+
+def is_email_clearly_junk(email: str) -> tuple[bool, str]:
+    """
+    Conservative: return (True, reason) only when email is clearly junk or placeholder.
+    Preserves generic role addresses (info@, intake@, contact@, office@, help@, admin@).
+    Returns (False, "") for any plausible real address.
+    """
+    if not email or "@" not in email:
+        return (True, "malformed")
+    parts = email.split("@", 1)
+    local = (parts[0] or "").strip().lower()
+    domain = (parts[1] or "").strip().lower()
+    if not local or not domain:
+        return (True, "malformed")
+    if " " in email or "." not in domain:
+        return (True, "malformed")
+    # Plausible hostname: alphanumeric, dots, hyphens
+    if not re.match(r"^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$", domain):
+        return (True, "malformed")
+    # Asset-like domain (e.g. x@2x.png)
+    if domain.split(".")[-1].lower() in ASSET_DOMAIN_SUFFIXES:
+        return (True, "placeholder_junk")
+    if "/" in domain or "\\" in domain:
+        return (True, "placeholder_junk")
+    # Placeholder domains
+    if domain in PLACEHOLDER_EMAIL_DOMAINS:
+        return (True, "placeholder_junk")
+    # Literal placeholder pairs
+    if (local, domain) in (
+        ("test", "test.com"), ("example", "example.com"), ("foo", "bar.com"),
+        ("user", "example.com"), ("admin", "example.com"), ("info", "example.com"),
+        ("sample", "example.com"), ("john", "doe.com"), ("johndoe", "email.com"),
+    ):
+        return (True, "placeholder_junk")
+    if "johndoe" in local and "email.com" in domain:
+        return (True, "placeholder_junk")
+    # noreply / no-reply / donotreply: not useful for outreach
+    if local in NO_REPLY_LOCAL_PARTS:
+        return (True, "placeholder_junk")
+    # Never reject generic role addresses (intake@, info@, contact@, office@, help@, admin@)
+    if local in GENERIC_ROLE_LOCAL_PARTS_PRESERVE:
+        return (False, "")
+    # flags@2x.png style
+    if "2x" in domain or "flags" in local and "png" in domain:
+        return (True, "placeholder_junk")
+    return (False, "")
 
 
 def normalize_root_domain(value: Any) -> str:
@@ -483,10 +569,13 @@ def is_phone_acceptable(digits_10: str) -> bool:
 def _has_value(value: Any) -> bool:
     if value is None:
         return False
+    if isinstance(value, pd.Series):
+        non_empty = value.notna() & (value.astype(str).str.strip() != "")
+        return bool(non_empty.any())
     try:
         if value != value:
             return False
-    except Exception:
+    except (ValueError, TypeError):
         pass
     if isinstance(value, str):
         return bool(value.strip())

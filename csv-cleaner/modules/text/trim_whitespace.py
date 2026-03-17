@@ -21,7 +21,7 @@ def run(
     columns = options.get("columns")
 
     if columns is not None:
-        cols = [c for c in columns if c in df.columns]
+        cols = [c for c in (list(columns) if hasattr(columns, "__iter__") and not isinstance(columns, str) else [columns]) if c in df.columns]
     else:
         cols = [
             c
@@ -29,7 +29,7 @@ def run(
             if pd.api.types.is_string_dtype(df[c])
         ]
 
-    if not cols:
+    if len(cols) == 0:
         report.record_module(config["module_id"], {"columns_trimmed": 0})
         return df
 

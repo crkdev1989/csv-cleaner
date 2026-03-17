@@ -5,6 +5,7 @@ CLI: run cleaner from command line. Supports config file, directory of configs, 
 import argparse
 import json
 import sys
+import traceback
 from pathlib import Path
 
 from cleaner.config import load_config
@@ -138,6 +139,7 @@ def main() -> None:
             config["input"] = {**config.get("input", {}), "path": str(path.resolve())}
             report = run_cleaner(config_dict=config)
         except Exception as e:
+            traceback.print_exc()
             print(f"Error: {e}", file=sys.stderr)
             sys.exit(1)
         results = [(args.path, report)]
@@ -151,6 +153,7 @@ def main() -> None:
         try:
             report = run_cleaner(config_dict=config)
         except Exception as e:
+            traceback.print_exc()
             print(f"Error: {e}", file=sys.stderr)
             sys.exit(1)
         results = [(args.path, report)]
@@ -158,6 +161,7 @@ def main() -> None:
         try:
             results = run_cleaner_batch(path)
         except Exception as e:
+            traceback.print_exc()
             print(f"Error: {e}", file=sys.stderr)
             sys.exit(1)
 

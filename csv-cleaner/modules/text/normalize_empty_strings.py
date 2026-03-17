@@ -32,10 +32,11 @@ def run(
     """
     options = config.get("options", {})
     columns = options.get("columns")
-    empty_values = options.get("empty_values") or []
+    raw_ev = options.get("empty_values")
+    empty_values = [] if raw_ev is None else (list(raw_ev) if hasattr(raw_ev, "__iter__") and not isinstance(raw_ev, str) else [raw_ev])
 
     if columns is not None:
-        cols = [c for c in columns if c in df.columns]
+        cols = [c for c in (list(columns) if hasattr(columns, "__iter__") and not isinstance(columns, str) else [columns]) if c in df.columns]
     else:
         cols = [
             c
@@ -43,7 +44,7 @@ def run(
             if pd.api.types.is_string_dtype(df[c])
         ]
 
-    if not cols:
+    if len(cols) == 0:
         report.record_module(
             config["module_id"],
             {"columns_processed": 0, "values_replaced": 0},

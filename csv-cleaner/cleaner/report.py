@@ -21,6 +21,9 @@ class CleaningReport:
         self.rows_output: int = 0
         self.duplicates_removed: int = 0
         self.rows_dropped: int = 0
+        self.rows_dropped_junk: int = 0  # from drop_junk_website_rows (etc.)
+        self.rows_dropped_required: int = 0  # from drop_rows_missing_required
+        self.rows_dropped_strict_filter: int = 0  # from leads.filter_has_email (strict path)
         self.modules_executed: list[str] = []
         self.processing_time_seconds: float = 0.0
         # Module-specific metrics (e.g. {"core.drop_empty": {"dropped": 5}})
@@ -58,7 +61,10 @@ class CleaningReport:
         m: dict[str, Any] = {
             "raw_input_rows": self.rows_loaded,
             "strict_email_ready_rows_written": self.rows_output,
-            "rows_dropped_by_required_filtering": self.rows_dropped,
+            "rows_dropped_junk": self.rows_dropped_junk,
+            "rows_dropped_required": self.rows_dropped_required,
+            "rows_dropped_strict_filter": self.rows_dropped_strict_filter,
+            "rows_dropped_total": self.rows_dropped,
             "rows_removed_by_dedupe": self.duplicates_removed,
         }
         if self.master_leads_count is not None:
@@ -74,6 +80,9 @@ class CleaningReport:
             "rows_output": self.rows_output,
             "duplicates_removed": self.duplicates_removed,
             "rows_dropped": self.rows_dropped,
+            "rows_dropped_junk": self.rows_dropped_junk,
+            "rows_dropped_required": self.rows_dropped_required,
+            "rows_dropped_strict_filter": self.rows_dropped_strict_filter,
             "modules_executed": self.modules_executed,
             "processing_time_seconds": round(self.processing_time_seconds, 4),
             "module_stats": self.module_stats,
@@ -110,7 +119,9 @@ class CleaningReport:
             "Stage / pipeline metrics:",
             f"  Raw input rows:                    {self.rows_loaded}",
             f"  Strict (email-ready) rows written:  {self.rows_output}",
-            f"  Rows dropped by required-field filtering: {self.rows_dropped}",
+            f"  Rows dropped (junk URLs):          {self.rows_dropped_junk}",
+            f"  Rows dropped (required-field):    {self.rows_dropped_required}",
+            f"  Rows dropped (strict email filter): {self.rows_dropped_strict_filter}",
             f"  Rows removed by dedupe:            {self.duplicates_removed}",
         ]
         if self.master_leads_count is not None:

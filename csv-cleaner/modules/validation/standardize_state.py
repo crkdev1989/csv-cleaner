@@ -95,14 +95,16 @@ def run(
     Operates on non-null values only. Unmapped values left unchanged.
     """
     options = config.get("options", {})
-    columns = options.get("columns") or []
-    output = (options.get("output") or "abbr").lower()
+    raw_cols = options.get("columns")
+    columns = list(raw_cols) if raw_cols is not None and hasattr(raw_cols, "__iter__") and not isinstance(raw_cols, str) else ([] if raw_cols is None else [raw_cols])
+    out_raw = options.get("output")
+    output = str(out_raw).lower() if out_raw is not None else "abbr"
 
     if output not in ("abbr", "name"):
         output = "abbr"
 
     cols = [c for c in columns if c in df.columns]
-    if not cols:
+    if len(cols) == 0:
         report.record_module(
             config["module_id"],
             {"columns_processed": 0, "values_changed": 0, "values_unmapped": 0},

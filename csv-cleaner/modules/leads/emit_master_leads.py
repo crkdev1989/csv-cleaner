@@ -42,8 +42,14 @@ _KEY_SEP = "\t"
 
 
 def _str(val) -> str:
-    """Normalize value to string for key; empty/null -> ''."""
-    if val is None or (isinstance(val, float) and pd.isna(val)):
+    """Normalize value to string for key; empty/null -> ''. Never use val in boolean context (may be Series)."""
+    if val is None:
+        return ""
+    if isinstance(val, pd.Series):
+        val = val.iloc[0] if len(val) > 0 else None
+        if val is None or (isinstance(val, float) and pd.isna(val)):
+            return ""
+    elif isinstance(val, float) and pd.isna(val):
         return ""
     s = str(val).strip()
     return s if s else ""
@@ -85,7 +91,7 @@ def run(
     (law_firm, city, state, website, name). Best-row selection by has_email, has_contact_page,
     has_phone before dropping duplicates. config["options"] may contain:
     - profile_url_column, input_url_column, detail_url_column (defaults: profile_url, input_url, detail_url).
-    - dedupe_key_mode: "identity" (default) or "legacy". legacy = exact duplicate on all columns in dedupe_subset.
+    - dedupe_key_mode: "none", "exact" (default), "identity", or "legacy". none = no dedupe; exact = drop only identical rows; identity = one per profile/input_url/composite; legacy = subset-based dedupe.
     """
     full_config = config.get("config", {})
     output_master = full_config.get("output_master")
@@ -93,16 +99,23 @@ def run(
         report.record_module(config["module_id"], {"skipped": True, "reason": "no output_master.path"})
         return df
 
+    # Independent snapshot: deep copy so later pipeline steps cannot mutate it.
+    master_df = df.copy(deep=True)
+    rows_before_dedupe = len(master_df)
+
     options = config.get("options", {})
     profile_col = str(options.get("profile_url_column") or "profile_url")
     input_url_col = str(options.get("input_url_column") or "input_url")
     detail_url_col = str(options.get("detail_url_column") or "detail_url")
-    dedupe_key_mode = str(options.get("dedupe_key_mode") or "identity").strip().lower()
+    dedupe_key_mode = str(options.get("dedupe_key_mode") or "exact").strip().lower()
 
-    master_df = df.copy()
-    rows_before_dedupe = len(master_df)
-
-    if dedupe_key_mode == "legacy":
+    if dedupe_key_mode == "none":
+        # No dedupe: keep every row in the master snapshot.
+        pass
+    elif dedupe_key_mode == "exact":
+        # Only drop rows that are exact duplicates (all columns identical). Preserves all distinct rows.
+        master_df = master_df.drop_duplicates(subset=list(master_df.columns), keep="first")
+    elif dedupe_key_mode == "legacy":
         # Legacy: drop exact duplicates on a fixed subset (old behavior).
         legacy_subset = options.get("dedupe_subset") or [
             "website", "profile_url", "input_url", "name", "law_firm", "email", "phone", "contact_page_url"

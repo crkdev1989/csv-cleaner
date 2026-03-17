@@ -20,13 +20,15 @@ def run(
     """
     options = config.get("options", {})
     single_value = options.get("value")
-    per_col_values = options.get("values") or {}
+    raw_values = options.get("values")
+    per_col_values = raw_values if isinstance(raw_values, dict) else {}
     columns = options.get("columns")
 
-    if per_col_values:
+    if isinstance(per_col_values, dict) and len(per_col_values) > 0:
         cols = [c for c in per_col_values if c in df.columns]
     elif columns is not None:
-        cols = [c for c in columns if c in df.columns]
+        cols_list = list(columns) if hasattr(columns, "__iter__") and not isinstance(columns, str) else [columns]
+        cols = [c for c in cols_list if c in df.columns]
         if single_value is None:
             report.record_module(
                 config["module_id"],
@@ -35,14 +37,14 @@ def run(
             return df
     else:
         cols = list(df.columns)
-        if single_value is None and not per_col_values:
+        if single_value is None and not (isinstance(per_col_values, dict) and len(per_col_values) > 0):
             report.record_module(
                 config["module_id"],
                 {"columns_filled": 0, "nulls_filled": 0},
             )
             return df
 
-    if not cols:
+    if len(cols) == 0:
         report.record_module(
             config["module_id"],
             {"columns_filled": 0, "nulls_filled": 0},
@@ -52,10 +54,11 @@ def run(
     total_filled = 0
     df = df.copy()
 
+    use_per_col = isinstance(per_col_values, dict) and len(per_col_values) > 0
     for col in cols:
         fill_val = (
             per_col_values.get(col, single_value)
-            if per_col_values
+            if use_per_col
             else single_value
         )
         if fill_val is None:

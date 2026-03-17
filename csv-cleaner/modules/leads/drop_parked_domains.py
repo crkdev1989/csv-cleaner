@@ -27,16 +27,25 @@ def run(
     report: CleaningReport,
 ) -> pd.DataFrame:
     options = config.get("options", {})
-    columns = options.get("columns") or [
-        "page_title",
-        "source_urls",
-        "website",
-        "contact_page_url",
-    ]
-    patterns = options.get("patterns") or DEFAULT_PARKING_PATTERNS
+    raw_cols = options.get("columns")
+    if raw_cols is None:
+        columns = [
+            "page_title",
+            "source_urls",
+            "website",
+            "contact_page_url",
+        ]
+    elif isinstance(raw_cols, (list, tuple)):
+        columns = list(raw_cols)
+    elif hasattr(raw_cols, "__iter__") and not isinstance(raw_cols, str):
+        columns = list(raw_cols)
+    else:
+        columns = [raw_cols]
+    raw_pat = options.get("patterns")
+    patterns = list(raw_pat) if raw_pat is not None and hasattr(raw_pat, "__iter__") and not isinstance(raw_pat, str) else (DEFAULT_PARKING_PATTERNS if raw_pat is None else [raw_pat])
 
     cols = [c for c in columns if c in df.columns]
-    if not cols:
+    if len(cols) == 0:
         report.record_module(
             config["module_id"],
             {"rows_dropped": 0, "reason": "no_columns_matched"},

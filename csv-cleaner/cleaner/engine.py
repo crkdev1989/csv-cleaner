@@ -1,8 +1,10 @@
 """
 Orchestration: load config, load data, run pipeline, write output and report.
 Supports full load and chunked processing for large files.
+When output.path is a directory, writes into a run-scoped subdir to avoid overwriting prior runs.
 """
 
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +15,9 @@ from cleaner.loaders import load_data, load_data_chunked
 from cleaner.pipeline import run_pipeline
 from cleaner.report import CleaningReport
 from cleaner.writers import write_data, write_report
+
+# Extensions that indicate output.path is a specific file, not a directory
+OUTPUT_FILE_EXTENSIONS = (".csv", ".xlsx", ".xls", ".json", ".yaml", ".yml")
 
 
 def run_cleaner(
@@ -67,15 +72,29 @@ def run_cleaner(
     output_fmt = config["output"].get("format") or infer_format(output_path_cfg)
     chunk_size = config.get("chunk_size")
 
-    # Derive output paths from input filename unless explicit file names are configured.
+    # Derive output paths. When output.path is a directory, use a run-scoped subdir so runs don't overwrite.
     input_stem = Path(input_path).stem
     output_path_resolved = Path(output_path_cfg).resolve()
-    output_dir = output_path_resolved.parent if output_path_resolved.suffix else output_path_resolved
+    is_output_a_file = (
+        output_path_resolved.suffix.lower() in OUTPUT_FILE_EXTENSIONS
+        or (output_path_resolved.exists() and output_path_resolved.is_file())
+    )
+    if is_output_a_file:
+        output_dir = output_path_resolved.parent
+        run_scoped_dir = None
+    else:
+        output_dir = output_path_resolved
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+        run_id = f"{input_stem}_clean_{timestamp}"
+        run_scoped_dir = output_dir / run_id
+        run_scoped_dir.mkdir(parents=True, exist_ok=True)
+        output_dir = run_scoped_dir
+
     output_ext = get_extension_for_format(output_fmt)
     output_file_name = str(config.get("output", {}).get("file_name") or "").strip()
     if output_file_name:
         output_path = str(output_dir / output_file_name)
-    elif output_path_resolved.suffix:
+    elif is_output_a_file and output_path_resolved.suffix:
         output_path = str(output_path_resolved)
     else:
         output_path = str(output_dir / f"{input_stem}_cleaned{output_ext}")
@@ -89,14 +108,31 @@ def run_cleaner(
             if report_path_resolved.suffix
             else report_path_resolved
         )
+        if run_scoped_dir is not None and (
+            report_path_resolved == output_path_resolved
+            or report_dir == output_path_resolved
+            or (report_path_resolved.parent == output_path_resolved)
+        ):
+            report_dir = run_scoped_dir
         if report_file_name:
             report_path = str(report_dir / report_file_name)
-        elif report_path_resolved.suffix:
+        elif report_path_resolved.suffix and report_dir != run_scoped_dir:
             report_path = str(report_path_resolved)
         else:
             report_path = str(report_dir / f"{input_stem}_report.json")
     else:
         report_path = None
+
+    # Point master/review outputs into the same run-scoped dir when they shared the original base dir
+    if run_scoped_dir is not None:
+        for key in ("output_master", "output_review"):
+            block = config.get(key)
+            if not block or not block.get("path"):
+                continue
+            base = Path(block["path"]).resolve()
+            base_dir = base.parent if base.suffix else base
+            if base_dir == output_path_resolved or base == output_path_resolved:
+                config[key]["path"] = str(run_scoped_dir)
     report.output_path = output_path
     report.report_path = report_path
     report.input_path = input_path

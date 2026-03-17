@@ -20,13 +20,19 @@ def run(
     """
     options = config.get("options", {})
     columns = options.get("columns")
-    case = (options.get("case") or "lower").lower()
+    case_raw = options.get("case")
+    if case_raw is None:
+        case = "lower"
+    elif hasattr(case_raw, "iloc"):
+        case = str(case_raw.iloc[0]).lower() if len(case_raw) > 0 else "lower"
+    else:
+        case = str(case_raw).lower()
 
     if case not in ("lower", "upper", "title"):
         case = "lower"
 
     if columns is not None:
-        cols = [c for c in columns if c in df.columns]
+        cols = [c for c in (list(columns) if hasattr(columns, "__iter__") and not isinstance(columns, str) else [columns]) if c in df.columns]
     else:
         cols = [
             c
@@ -34,7 +40,7 @@ def run(
             if pd.api.types.is_string_dtype(df[c])
         ]
 
-    if not cols:
+    if len(cols) == 0:
         report.record_module(config["module_id"], {"columns_normalized": 0})
         return df
 

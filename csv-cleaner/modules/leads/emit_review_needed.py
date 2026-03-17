@@ -11,10 +11,13 @@ from cleaner.report import CleaningReport
 from cleaner.writers import write_data
 
 
-def _has_value(series: pd.Series) -> pd.Series:
+def _has_value(series: pd.Series | pd.DataFrame) -> pd.Series:
     """True where value is non-null and (if str) non-empty after strip."""
+    if isinstance(series, pd.DataFrame):
+        series = series.iloc[:, 0]
     out = series.notna()
-    if series.dtype == object or str(series.dtype) == "object":
+    col_dtype = series.dtype
+    if col_dtype == object or str(col_dtype) == "object":
         out = out & series.astype(str).str.strip().astype(bool)
     return out
 
@@ -56,7 +59,7 @@ def run(
             has_any_contact = has_any_contact | _has_value(df[c])
 
     review_mask = has_website & ~has_any_contact
-    review_df = df.loc[review_mask].copy()
+    review_df = df.loc[review_mask].copy(deep=True)
 
     file_name = (output_review.get("file_name") or "REVIEW_NEEDED.csv").strip()
     path_resolved = Path(out_path).resolve()

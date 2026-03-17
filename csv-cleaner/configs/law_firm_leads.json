@@ -111,6 +111,25 @@
       }
     },
     {
+      "id": "leads.add_lead_flags",
+      "options": {
+        "_comment": "Add has_email, has_contact_page, has_phone for master/review output (runs before row-dropping)."
+      }
+    },
+    {
+      "id": "leads.emit_review_needed",
+      "options": {
+        "_comment": "Write rows with website but missing strong contact to REVIEW_NEEDED.csv (snapshot before drop_junk)."
+      }
+    },
+    {
+      "id": "leads.emit_master_leads",
+      "options": {
+        "_comment": "Write preserved master leads (snapshot before drop_junk).",
+        "dedupe_key_mode": "none"
+      }
+    },
+    {
       "id": "leads.drop_junk_website_rows",
       "options": {
         "_comment": "Drop rows where website or input_url contains google.com/maps or amazon.com.",
@@ -121,7 +140,7 @@
     {
       "id": "leads.blank_junk_contacts",
       "options": {
-        "_comment": "Blank junk websites, placeholder emails, and invalid/placeholder phones (000-000-0000, 800-555-6666, invalid US area codes)."
+        "_comment": "Blank junk websites; blank only clearly junk/malformed emails (placeholders, noreply, asset-like). Generic role addresses (intake@, info@, contact@, office@) are preserved. Blank invalid/placeholder phones (000-000-0000, 800-555-6666, invalid US area codes)."
       }
     },
     {
@@ -202,27 +221,9 @@
       }
     },
     {
-      "id": "leads.add_lead_flags",
-      "options": {
-        "_comment": "Add has_email, has_contact_page, has_phone for master leads output."
-      }
-    },
-    {
-      "id": "leads.emit_review_needed",
-      "options": {
-        "_comment": "Write rows with website but missing strong contact (email/contact_page/phone) to REVIEW_NEEDED.csv for later review."
-      }
-    },
-    {
-      "id": "leads.emit_master_leads",
-      "options": {
-        "_comment": "Write preserved master leads (identity-key dedupe: profile_url > input_url > firm+city+state+website+name; best-row selection). Set dedupe_key_mode: 'legacy' to use old subset dedupe."
-      }
-    },
-    {
       "id": "core.drop_rows_missing_required",
       "options": {
-        "_comment": "Safely remove rows only when all strong contact fields are missing.",
+        "_comment": "Strict export is email-first: drop only when all of website, email, phone are missing. We do not require firm_name or contact_name so leads with real emails are not excluded when firm extraction is inconsistent.",
         "columns": [
           "website",
           "email",
@@ -232,16 +233,19 @@
       }
     },
     {
+      "id": "leads.filter_has_email",
+      "options": {
+        "_comment": "Strict path: keep only rows with non-empty email so dedupe runs on email-only subset. Different emails survive; same email dedupes to one.",
+        "email_column": "email"
+      }
+    },
+    {
       "id": "dedupe.drop_duplicates",
       "options": {
-        "_comment": "Conservative exact dedupe across columns that exist after renaming to canonical names.",
-        "subset": [
-          "website",
-          "phone",
-          "law_firm",
-          "city",
-          "state"
-        ],
+        "_comment": "Strict path: input is already filtered to rows with email (leads.filter_has_email). Dedupe by email only; one row per distinct email. Fallback key unused on strict path.",
+        "mode": "email_first",
+        "email_column": "email",
+        "fallback_subset": ["website", "profile_url", "input_url", "name", "law_firm", "city", "state"],
         "keep": "first"
       }
     },

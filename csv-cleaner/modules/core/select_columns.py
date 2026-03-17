@@ -19,10 +19,18 @@ def run(
     - strict: if True, raise if any requested column is missing (default: False).
     """
     options = config.get("options", {})
-    wanted = options.get("columns") or []
+    raw_wanted = options.get("columns")
+    if raw_wanted is None:
+        wanted = []
+    elif isinstance(raw_wanted, (list, tuple)):
+        wanted = list(raw_wanted)
+    elif hasattr(raw_wanted, "__iter__") and not isinstance(raw_wanted, str):
+        wanted = list(raw_wanted)
+    else:
+        wanted = [raw_wanted]
     strict = options.get("strict", False)
 
-    if not wanted:
+    if len(wanted) == 0:
         report.record_module(config["module_id"], {"columns_selected": 0})
         return df
 

@@ -27,15 +27,17 @@ def run(
     """
     options = config.get("options", {})
     columns = options.get("columns")
-    mapping = options.get("mapping") or {}
-    per_col = options.get("mappings") or {}
+    raw_mapping = options.get("mapping")
+    mapping = raw_mapping if isinstance(raw_mapping, dict) else {}
+    raw_per = options.get("mappings")
+    per_col = raw_per if isinstance(raw_per, dict) else {}
 
     if columns is not None:
-        cols = [c for c in columns if c in df.columns]
+        cols = [c for c in (list(columns) if hasattr(columns, "__iter__") and not isinstance(columns, str) else [columns]) if c in df.columns]
     else:
         cols = list(df.columns)
 
-    if not cols or (not mapping and not per_col):
+    if len(cols) == 0 or (len(mapping) == 0 and len(per_col) == 0):
         report.record_module(
             config["module_id"],
             {"columns_processed": 0, "replacements": 0},
@@ -47,11 +49,12 @@ def run(
     df = df.copy()
 
     for col in cols:
+        per_col_map = per_col.get(col)
         col_map = {
             k: _to_replacement(v)
-            for k, v in (per_col.get(col) or global_map).items()
+            for k, v in (per_col_map if isinstance(per_col_map, dict) else global_map).items()
         }
-        if not col_map:
+        if len(col_map) == 0:
             continue
         for old_val, new_val in col_map.items():
             mask = df[col] == old_val

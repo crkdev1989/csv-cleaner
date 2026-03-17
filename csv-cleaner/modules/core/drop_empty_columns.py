@@ -29,14 +29,22 @@ def run(
     """
     options = config.get("options", {})
     subset = options.get("subset")
-    treat_blank_as_empty = options.get("treat_blank_strings_as_empty", True)
+    raw_treat = options.get("treat_blank_strings_as_empty")
+    if isinstance(raw_treat, bool):
+        treat_blank_as_empty = raw_treat
+    elif raw_treat is None:
+        treat_blank_as_empty = True
+    elif hasattr(raw_treat, "iloc"):
+        treat_blank_as_empty = bool(raw_treat.iloc[0]) if len(raw_treat) > 0 else True
+    else:
+        treat_blank_as_empty = bool(raw_treat)
 
     if subset is not None:
-        to_check = [c for c in subset if c in df.columns]
+        to_check = [c for c in (list(subset) if hasattr(subset, "__iter__") and not isinstance(subset, str) else [subset]) if c in df.columns]
     else:
         to_check = list(df.columns)
 
-    if not to_check:
+    if len(to_check) == 0:
         report.record_module(
             config["module_id"],
             {"columns_dropped": 0, "dropped_columns": []},
@@ -48,7 +56,7 @@ def run(
         if df[col].apply(lambda v: _is_empty(v, treat_blank_as_empty)).all():
             drop.append(col)
 
-    if not drop:
+    if len(drop) == 0:
         report.record_module(
             config["module_id"],
             {"columns_dropped": 0, "dropped_columns": []},

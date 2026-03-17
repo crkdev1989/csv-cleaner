@@ -23,14 +23,15 @@ def run(
     Nulls are preserved (not converted to the string "nan").
     """
     options = config.get("options", {})
-    columns = options.get("columns") or []
+    raw_cols = options.get("columns")
+    columns = list(raw_cols) if raw_cols is not None and hasattr(raw_cols, "__iter__") and not isinstance(raw_cols, str) else ([] if raw_cols is None else [raw_cols])
     errors = options.get("errors", "coerce")
     downcast = options.get("downcast")
     strip_commas = options.get("strip_commas", True)
     strip_currency = options.get("strip_currency", False)
 
     cols = [c for c in columns if c in df.columns]
-    if not cols:
+    if len(cols) == 0:
         report.record_module(
             config["module_id"],
             {

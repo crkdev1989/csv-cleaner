@@ -34,10 +34,16 @@ def run(
     options = config.get("options", {})
     identity_path = options.get("identity_path")
     merge_key = options.get("merge_key", "website")
-    fill_columns = options.get("fill_columns") or {}
+    raw_fill = options.get("fill_columns")
+    fill_columns = raw_fill if isinstance(raw_fill, dict) else {}
 
-    identity_path = (identity_path or "").strip()
-    if not identity_path or not fill_columns:
+    if identity_path is not None and hasattr(identity_path, "iloc"):
+        identity_path = str(identity_path.iloc[0]).strip() if len(identity_path) > 0 else ""
+    elif identity_path is not None:
+        identity_path = str(identity_path).strip()
+    else:
+        identity_path = ""
+    if len(identity_path) == 0 or len(fill_columns) == 0:
         report.record_module(config["module_id"], {"rows_merged": 0, "cells_filled": 0})
         return df
 

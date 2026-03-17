@@ -22,14 +22,15 @@ def run(
     Nulls are preserved (not converted to the string "nan").
     """
     options = config.get("options", {})
-    columns = options.get("columns") or []
+    raw_cols = options.get("columns")
+    columns = list(raw_cols) if raw_cols is not None and hasattr(raw_cols, "__iter__") and not isinstance(raw_cols, str) else ([] if raw_cols is None else [raw_cols])
     errors = options.get("errors", "coerce")
     format_ = options.get("format")
     dayfirst = options.get("dayfirst", False)
     utc = options.get("utc", False)
 
     cols = [c for c in columns if c in df.columns]
-    if not cols:
+    if len(cols) == 0:
         report.record_module(
             config["module_id"],
             {

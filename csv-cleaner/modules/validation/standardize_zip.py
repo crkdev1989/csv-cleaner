@@ -38,14 +38,21 @@ def run(
     Operates on non-null values only. Leading zeros preserved. Invalid values left unchanged.
     """
     options = config.get("options", {})
-    columns = options.get("columns") or []
-    output = (options.get("output") or "zip5").lower()
+    raw_cols = options.get("columns")
+    columns = list(raw_cols) if raw_cols is not None and hasattr(raw_cols, "__iter__") and not isinstance(raw_cols, str) else ([] if raw_cols is None else [raw_cols])
+    out_raw = options.get("output")
+    if out_raw is None:
+        output = "zip5"
+    elif hasattr(out_raw, "iloc"):
+        output = str(out_raw.iloc[0]).lower() if len(out_raw) > 0 else "zip5"
+    else:
+        output = str(out_raw).lower()
 
     if output not in ("zip5", "zip9"):
         output = "zip5"
 
     cols = [c for c in columns if c in df.columns]
-    if not cols:
+    if len(cols) == 0:
         report.record_module(
             config["module_id"],
             {"columns_processed": 0, "values_changed": 0, "values_invalid": 0},

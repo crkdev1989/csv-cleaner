@@ -17,9 +17,10 @@ def run(
     - mapping: dict of { old_name: new_name }. Columns not present are skipped.
     """
     options = config.get("options", {})
-    mapping = options.get("mapping") or {}
+    raw_mapping = options.get("mapping")
+    mapping = raw_mapping if isinstance(raw_mapping, dict) else {}
 
-    if not mapping:
+    if len(mapping) == 0:
         report.record_module(config["module_id"], {"renamed": []})
         return df
 
@@ -28,7 +29,7 @@ def run(
         for old, new in mapping.items()
         if old in df.columns
     }
-    if not rename:
+    if len(rename) == 0:
         report.record_module(config["module_id"], {"renamed": []})
         return df
 
